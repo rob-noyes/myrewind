@@ -1,10 +1,13 @@
+import { Box } from '@mui/system';
+import Nav from './components/Nav';
 import Home from './pages/Home';
 
 function App() {
   return (
-    <div className='App'>
+    <Box>
+      <Nav />
       <Home />
-    </div>
+    </Box>
   );
 }
 

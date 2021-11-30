@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/system/Box';
-import Container from '@mui/material/Container';
 import Trending from '../components/Trending';
 
 export default function Home() {
