@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import Box from '@mui/system/Box';
+import Container from '@mui/material/Container';
+import Trending from '../components/Trending';
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/76341?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`
-    )
-      .then((res) => res.json())
-      .then((data) => setMovies(data));
+    async function fetchAPI() {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`
+        );
+        const json = await response.json();
+        setMovies(json.results);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchAPI();
   }, []);
   console.log(movies);
 
   return (
-    <div>
-      <p>{movies.title}</p>
-      <img
-        src={`https://image.tmdb.org/t/p/w200/${movies.poster_path}`}
-        alt=''
-      />
-    </div>
+    <Container>
+      <Trending movies={movies} />
+    </Container>
   );
 }
