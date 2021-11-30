@@ -23,8 +23,8 @@ export default function Home() {
   console.log(movies);
 
   return (
-    <Container>
+    <Box>
       <Trending movies={movies} />
-    </Container>
+    </Box>
   );
 }
