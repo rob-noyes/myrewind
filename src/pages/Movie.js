@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import Box from '@mui/system/Box';
+import Nav from '../components/Nav';
 import React from 'react';
 
 export default function Movie({ movies }) {
@@ -13,10 +14,10 @@ export default function Movie({ movies }) {
     movieBase: {
       marginTop: '5rem',
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: 'row',
       alignItems: 'center',
-      background: '#c2c2c2',
       padding: '4rem',
+      color: '#8694A1',
     },
   };
   return (

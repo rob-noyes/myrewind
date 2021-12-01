@@ -9,9 +9,9 @@ const style = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    color: '#8694A1',
   },
   trending: {
-    background: '#f2f2f2',
     borderRadius: '5px',
     display: 'flex',
     flexWrap: 'wrap',
@@ -19,6 +19,7 @@ const style = {
     justifyContent: 'center',
     alignItems: 'center',
     padding: '2rem',
+    color: '#8694A1',
   },
 };
 
