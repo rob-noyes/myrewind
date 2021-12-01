@@ -1,4 +1,12 @@
-import { AppBar, Toolbar, Link, useScrollTrigger, Slide } from '@mui/material';
+import { Search } from '@mui/icons-material';
+import {
+  AppBar,
+  Toolbar,
+  Link,
+  useScrollTrigger,
+  Slide,
+  TextField,
+} from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react';
 import image from '../images/logo.png';
@@ -15,6 +23,14 @@ const style = {
   imageIcon: {
     height: '1rem',
     color: '#ffffff',
+  },
+  field: {
+    marginTop: '1rem',
+    marginBottom: '1rem',
+    display: 'block',
+    background: '#ffffff',
+    borderRadius: '1rem',
+    width: '50%',
   },
 };
 
@@ -43,6 +59,12 @@ export default function Nav(props) {
           <Link href='/' underline='none' sx={style.title}>
             <img className='imageTitle' src={image} alt='' />
           </Link>
+          <TextField
+            hiddenLabel
+            sx={style.field}
+            fullWidth
+            placeholder='Search'
+          ></TextField>
         </Toolbar>
       </AppBar>
     </HideOnScroll>
