@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import Box from '@mui/system/Box';
 import Trending from '../components/Trending';
 
-export default function Home({ movies }) {
-  console.log(movies);
-
+export default function Home({ trending }) {
   return (
     <Box>
-      <Trending movies={movies} />
+      <Trending trending={trending} />
     </Box>
   );
 }

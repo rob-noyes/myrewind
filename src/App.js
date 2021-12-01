@@ -8,14 +8,26 @@ import Movie from './pages/Movie';
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [trending, setTrending] = useState([]);
+
+  // useEffect(() => {
+  //   async function fetchMovies() {
+  //     try {
+  //       const response = await fetch('https://api.themoviedb.org/3');
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  // });
 
   useEffect(() => {
     async function fetchAPI() {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`
+          `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`
         );
         const json = await response.json();
+        setTrending(json.results);
         setMovies(json.results);
       } catch (err) {
         console.log(err);
@@ -35,7 +47,7 @@ function App() {
         element={
           <Box>
             <Nav />
-            <Home movies={movies} />
+            <Home trending={trending} />
           </Box>
         }
       />
@@ -44,7 +56,7 @@ function App() {
         element={
           <Box>
             <Nav />
-            <Movie movies={movies} />
+            <Movie movies={movies} id={id} />
           </Box>
         }
       />

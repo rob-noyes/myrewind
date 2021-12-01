@@ -22,12 +22,12 @@ const style = {
   },
 };
 
-export default function Trending({ movies }) {
+export default function Trending({ trending }) {
   return (
     <Container sx={style.contain}>
       <h2>Trending</h2>
       <Container sx={style.trending}>
-        {movies.map((movie) => (
+        {trending.map((movie) => (
           <Link key={movie.id} href={`/movie/${movie.id}`}>
             <Button elevation={2}>
               <img

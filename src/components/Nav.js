@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography, Link } from '@mui/material';
+import { AppBar, Toolbar, Link } from '@mui/material';
 import React from 'react';
 
 const style = {
