@@ -3,10 +3,11 @@ import { Box } from '@mui/system';
 import { grey } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route, useParams, useNavigate } from 'react-router-dom';
 import Movie from './pages/Movie';
 import Home from './pages/Home';
 import Layout from './components/Layout';
+import Search from './pages/Search';
 
 const theme = createTheme({
   palette: {
@@ -23,10 +24,11 @@ const theme = createTheme({
 });
 
 function App() {
-  const [movies, setMovies] = useState('');
+  let navigate = useNavigate();
+  const [movies, setMovies] = useState([]);
   const [trending, setTrending] = useState([]);
   const [search, setSearch] = useState('');
-  const [searchError, setSearchError] = useState(false);
+  const [queryResults, setQueryResults] = useState([]);
 
   useEffect(() => {
     async function fetchAPI() {
@@ -50,9 +52,16 @@ function App() {
     e.preventDefault();
 
     if (search === '') {
-      setSearchError(true);
+      console.log('Please enter a value');
     } else {
-      setMovies(search);
+      //fetch api movie and add to the movie list, unless already added.
+      fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&query=${search}`
+      )
+        .then((response) => response.json())
+        .then((data) => setQueryResults(data.results));
+      //After fetch, go to movie page
+      navigate(`/search/`);
     }
   };
 
@@ -77,6 +86,10 @@ function App() {
                 <Movie movies={movies} id={id} />
               </Box>
             }
+          />
+          <Route
+            path={`/search/`}
+            element={<Search queryResults={queryResults} />}
           />
         </Routes>
       </Layout>

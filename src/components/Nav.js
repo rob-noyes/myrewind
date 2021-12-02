@@ -6,13 +6,12 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import AppBar from '@mui/material/AppBar';
 import PropTypes from 'prop-types';
 import image from '../images/logo.png';
-import { useState } from 'react';
 
 const style = {
   appbar: {
     background: '#13181B',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   title: {
     fontSize: '2rem',
@@ -21,13 +20,15 @@ const style = {
     height: '1rem',
     color: '#ffffff',
   },
+  form: {
+    width: '40rem',
+  },
   field: {
     marginTop: '1rem',
     marginBottom: '1rem',
     display: 'block',
     background: '#ffffff',
     borderRadius: '1rem',
-    width: '50%',
   },
 };
 
@@ -49,9 +50,6 @@ HideOnScroll.propTypes = {
 };
 
 export default function Nav({ props, search, setSearch, handleSearch }) {
-  // const [search, setSearch] = useState('');
-  console.log(search);
-
   return (
     <HideOnScroll {...props}>
       <AppBar>
