@@ -1,15 +1,12 @@
-import { Search } from '@mui/icons-material';
-import {
-  AppBar,
-  Toolbar,
-  Link,
-  useScrollTrigger,
-  Slide,
-  TextField,
-} from '@mui/material';
+import TextField from '@mui/material/TextField';
+import Toolbar from '@mui/material/Toolbar';
+import Link from '@mui/material/Link';
+import Slide from '@mui/material/Slide';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import AppBar from '@mui/material/AppBar';
 import PropTypes from 'prop-types';
-import React from 'react';
 import image from '../images/logo.png';
+import { useState } from 'react';
 
 const style = {
   appbar: {
@@ -51,7 +48,10 @@ HideOnScroll.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export default function Nav(props) {
+export default function Nav({ props, search, setSearch, handleSearch }) {
+  // const [search, setSearch] = useState('');
+  console.log(search);
+
   return (
     <HideOnScroll {...props}>
       <AppBar>
@@ -59,12 +59,15 @@ export default function Nav(props) {
           <Link href='/' underline='none' sx={style.title}>
             <img className='imageTitle' src={image} alt='' />
           </Link>
-          <TextField
-            hiddenLabel
-            sx={style.field}
-            fullWidth
-            placeholder='Search'
-          ></TextField>
+          <form noValidate autoComplete='off' onSubmit={handleSearch}>
+            <TextField
+              onChange={(e) => setSearch(e.target.value)}
+              hiddenLabel
+              sx={style.field}
+              fullWidth
+              placeholder='Search'
+            ></TextField>
+          </form>
         </Toolbar>
       </AppBar>
     </HideOnScroll>

@@ -5,7 +5,6 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import { Routes, Route, useParams } from 'react-router-dom';
 import Movie from './pages/Movie';
-import Nav from './components/Nav';
 import Home from './pages/Home';
 import Layout from './components/Layout';
 
@@ -24,8 +23,10 @@ const theme = createTheme({
 });
 
 function App() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState('');
   const [trending, setTrending] = useState([]);
+  const [search, setSearch] = useState('');
+  const [searchError, setSearchError] = useState(false);
 
   useEffect(() => {
     async function fetchAPI() {
@@ -43,13 +44,22 @@ function App() {
     fetchAPI();
   }, []);
 
-  console.log(movies);
   const { id } = useParams();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    if (search === '') {
+      setSearchError(true);
+    } else {
+      setMovies(search);
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Layout>
+      <Layout search={search} setSearch={setSearch} handleSearch={handleSearch}>
         <Routes>
           <Route
             exact

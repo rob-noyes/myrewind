@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material';
 import Box from '@mui/system/Box';
-import Nav from '../components/Nav';
 import React from 'react';
 
 export default function Movie({ movies }) {
