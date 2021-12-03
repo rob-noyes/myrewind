@@ -1,98 +1,49 @@
-import { useState, useEffect } from 'react';
-import { Box } from '@mui/system';
-import { grey } from '@mui/material/colors';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
-import { Routes, Route, useParams, useNavigate } from 'react-router-dom';
-import Movie from './pages/Movie';
-import Home from './pages/Home';
-import Layout from './components/Layout';
-import Search from './pages/Search';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      light: grey[100],
-      main: grey[500],
-      dark: grey[200],
-      contrastText: '#ffffff',
-    },
-    background: {
-      default: '#1B1D20',
-    },
-  },
-});
+import { useState } from 'react';
+import { ThemeProvider } from '@mui/material';
+import { Routes, Route } from 'react-router';
+import MovieList from './pages/MovieList';
 
 function App() {
-  let navigate = useNavigate();
-  const [movies, setMovies] = useState([]);
-  const [trending, setTrending] = useState([]);
-  const [search, setSearch] = useState('');
-  const [queryResults, setQueryResults] = useState([]);
-
-  useEffect(() => {
-    async function fetchAPI() {
-      try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`
-        );
-        const json = await response.json();
-        setTrending(json.results);
-        setMovies(json.results);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchAPI();
-  }, []);
-
-  const { id } = useParams();
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-
-    if (search === '') {
-      console.log('Please enter a value');
-    } else {
-      //fetch api movie and add to the movie list, unless already added.
-      fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&query=${search}`
-      )
-        .then((response) => response.json())
-        .then((data) => setQueryResults(data.results));
-      //After fetch, go to movie page
-      navigate(`/search/`);
-    }
-  };
+  const [movies, setMovies] = useState([
+    {
+      Title: 'Blade Runner',
+      Year: '1982',
+      imdbID: 'tt0083658',
+      Type: 'movie',
+      Poster:
+        'https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg',
+    },
+    {
+      Title: 'Blade Runner 2049',
+      Year: '2017',
+      imdbID: 'tt1856101',
+      Type: 'movie',
+      Poster:
+        'https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_SX300.jpg',
+    },
+    {
+      Title: 'Blade',
+      Year: '1998',
+      imdbID: 'tt0120611',
+      Type: 'movie',
+      Poster:
+        'https://m.media-amazon.com/images/M/MV5BOTk2NDNjZWQtMGY0Mi00YTY2LWE5MzctMGRhZmNlYzljYTg5XkEyXkFqcGdeQXVyMTAyNjg4NjE0._V1_SX300.jpg',
+    },
+    {
+      Title: 'Blade II',
+      Year: '2002',
+      imdbID: 'tt0187738',
+      Type: 'movie',
+      Poster:
+        'https://m.media-amazon.com/images/M/MV5BOWVjZTIzNDYtNTBlNC00NTJjLTkzOTEtOTE0MjlhYzI2YTcyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg',
+    },
+  ]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Layout search={search} setSearch={setSearch} handleSearch={handleSearch}>
-        <Routes>
-          <Route
-            exact
-            path='/'
-            element={
-              <Box>
-                <Home trending={trending} />
-              </Box>
-            }
-          />
-          <Route
-            path='/movie/:id'
-            element={
-              <Box>
-                <Movie movies={movies} id={id} />
-              </Box>
-            }
-          />
-          <Route
-            path={`/search/`}
-            element={<Search queryResults={queryResults} />}
-          />
-        </Routes>
-      </Layout>
+    <ThemeProvider>
+      <Routes>
+        <Route path='/' element={<MovieList movies={movies} />} />
+      </Routes>
     </ThemeProvider>
   );
 }
