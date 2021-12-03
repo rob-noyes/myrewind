@@ -5,9 +5,32 @@ body {
   color: #ffffff;
 }
 
-.imageTitle {
-  height: 5rem;
-  color: #ffffff;
+.image-container {
+  position: relative;
+  transition: transform 0.2s;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  padding: 1rem 0.75rem;
+}
+
+.image-container:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  width: 71%;
+  transition: 0.5s ease;
+  opacity: 0;
+  bottom: 0;
+  font-size: 16px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
 }
