@@ -1,48 +1,48 @@
-import { useState } from 'react';
-import { ThemeProvider } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { createTheme, ThemeProvider } from '@mui/material';
 import { Routes, Route } from 'react-router';
 import MovieList from './pages/MovieList';
+import { grey } from '@mui/material/colors';
+
+const theme = createTheme({
+  palette: {
+    primary: grey,
+  },
+});
 
 function App() {
-  const [movies, setMovies] = useState([
-    {
-      Title: 'Blade Runner',
-      Year: '1982',
-      imdbID: 'tt0083658',
-      Type: 'movie',
-      Poster:
-        'https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg',
-    },
-    {
-      Title: 'Blade Runner 2049',
-      Year: '2017',
-      imdbID: 'tt1856101',
-      Type: 'movie',
-      Poster:
-        'https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_SX300.jpg',
-    },
-    {
-      Title: 'Blade',
-      Year: '1998',
-      imdbID: 'tt0120611',
-      Type: 'movie',
-      Poster:
-        'https://m.media-amazon.com/images/M/MV5BOTk2NDNjZWQtMGY0Mi00YTY2LWE5MzctMGRhZmNlYzljYTg5XkEyXkFqcGdeQXVyMTAyNjg4NjE0._V1_SX300.jpg',
-    },
-    {
-      Title: 'Blade II',
-      Year: '2002',
-      imdbID: 'tt0187738',
-      Type: 'movie',
-      Poster:
-        'https://m.media-amazon.com/images/M/MV5BOWVjZTIzNDYtNTBlNC00NTJjLTkzOTEtOTE0MjlhYzI2YTcyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg',
-    },
-  ]);
+  const [movies, setMovies] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
+
+  const getMovieRequest = async (searchValue) => {
+    const urls = `https://api.themoviedb.org/3/search/movie?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US&query=${searchValue}`;
+    const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=1f686e53`;
+    const response = await fetch(urls);
+    const responseJson = await response.json();
+    const results = responseJson;
+
+    if (responseJson.results !== undefined) {
+      setMovies(responseJson.results);
+    }
+  };
+
+  useEffect(() => {
+    getMovieRequest(searchValue);
+  }, [searchValue]);
 
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <Routes>
-        <Route path='/' element={<MovieList movies={movies} />} />
+        <Route
+          path='/'
+          element={
+            <MovieList
+              movies={movies}
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+            />
+          }
+        />
       </Routes>
     </ThemeProvider>
   );
