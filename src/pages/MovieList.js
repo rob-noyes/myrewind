@@ -63,6 +63,7 @@ export default function MovieList({
   setSearchValue,
   handleFavoriteClick,
   favorites,
+  removeFavoriteMovie,
 }) {
   return (
     <Box>
@@ -71,6 +72,7 @@ export default function MovieList({
         <Search setSearchValue={setSearchValue} />
       </Box>
       <Box sx={style.row}>
+        {console.log(movies)}
         {movies
           .filter((movie) => movie.poster_path !== null)
           .map((movie, index) => (
@@ -91,7 +93,10 @@ export default function MovieList({
           ))}
       </Box>
       <Box>
-        <FavoritesSection favorites={favorites} />
+        <FavoritesSection
+          favorites={favorites}
+          removeFavoriteMovie={removeFavoriteMovie}
+        />
       </Box>
     </Box>
   );

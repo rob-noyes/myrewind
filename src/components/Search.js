@@ -7,12 +7,16 @@ const style = {
     background: '#ffffff',
     borderRadius: '1rem',
   },
+  search: {
+    width: '30rem',
+  },
 };
 
 export default function Search({ setSearchValue }) {
   return (
     <Box sx={style.col}>
       <TextField
+        sx={style.search}
         placeholder='Search Movies'
         onChange={(e) => setSearchValue(e.target.value)}
       ></TextField>

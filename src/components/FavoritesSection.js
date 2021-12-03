@@ -2,6 +2,7 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
 import Button from '@mui/material/Button';
+import RemoveFavorite from './RemoveFavorite';
 
 const style = {
   row: {
@@ -18,10 +19,10 @@ const style = {
   },
 };
 
-export default function FavoritesSection({ favorites }) {
+export default function FavoritesSection({ favorites, removeFavoriteMovie }) {
   return (
     <Box>
-      <Typography variant='h3' fontWeight='light'>
+      <Typography variant='h3' fontWeight='light' m={1}>
         Favorites
       </Typography>
       <Box sx={style.row}>
@@ -35,7 +36,12 @@ export default function FavoritesSection({ favorites }) {
                   alt='movie'
                 />
               </Button>
-              <Box className='overlay'></Box>
+              <Box
+                className='overlay'
+                onClick={() => removeFavoriteMovie(movie)}
+              >
+                <RemoveFavorite />
+              </Box>
             </Box>
           ))}
       </Box>
