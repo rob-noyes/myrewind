@@ -1,8 +1,8 @@
 import React from 'react';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
+import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
-import RemoveFavorite from './RemoveFavorite';
+import AddFavorite from './AddFavorite';
 
 const style = {
   row: {
@@ -21,14 +21,14 @@ const style = {
   },
 };
 
-export default function FavoritesSection({ favorites, removeFavoriteMovie }) {
+export default function TrendingSection({ trending, handleFavoriteClick }) {
   return (
     <Box>
       <Typography variant='h3' fontWeight='light' m={1}>
-        Favorites
+        Trending
       </Typography>
       <Box sx={style.row}>
-        {favorites
+        {trending
           .filter((movie) => movie.poster_path !== null)
           .map((movie, index) => (
             <Box className='image-container' key={index}>
@@ -37,13 +37,13 @@ export default function FavoritesSection({ favorites, removeFavoriteMovie }) {
                   src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
                   alt='movie'
                 />
+                <Box
+                  className='overlay'
+                  onClick={() => handleFavoriteClick(movie)}
+                >
+                  <AddFavorite />
+                </Box>
               </Button>
-              <Box
-                className='overlay'
-                onClick={() => removeFavoriteMovie(movie)}
-              >
-                <RemoveFavorite />
-              </Box>
             </Box>
           ))}
       </Box>

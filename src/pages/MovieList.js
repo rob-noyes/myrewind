@@ -5,12 +5,15 @@ import MovieListHeading from '../components/MovieListHeading';
 import Search from '../components/Search';
 import AddFavorite from '../components/AddFavorite';
 import FavoritesSection from '../components/FavoritesSection';
+import TrendingSection from '../components/TrendingSection';
+import { Typography } from '@mui/material';
 
 const style = {
   row: {
     display: 'flex',
     flexDirection: 'row',
     overflowX: 'auto',
+    overflowY: 'hidden',
     justifyContent: 'start',
   },
 
@@ -27,7 +30,7 @@ const style = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    paddingY: '1rem',
+    marginY: '1rem',
     padding: '.75rem',
     fontSize: '1.2rem',
     transition: 'transform .5s',
@@ -64,34 +67,46 @@ export default function MovieList({
   handleFavoriteClick,
   favorites,
   removeFavoriteMovie,
+  trending,
 }) {
   return (
     <Box>
       <Box sx={style.heading}>
-        <MovieListHeading heading='Movies' />
+        <MovieListHeading heading='Cinema List' />
         <Search setSearchValue={setSearchValue} />
       </Box>
-      <Box sx={style.row}>
-        {console.log(movies)}
-        {movies
-          .filter((movie) => movie.poster_path !== null)
-          .map((movie, index) => (
-            <Box className='image-container' key={index}>
-              <Button sx={style.button}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-                  alt='movie'
-                />
-                <Box
-                  className='overlay'
-                  onClick={() => handleFavoriteClick(movie)}
-                >
-                  <AddFavorite />
-                </Box>
-              </Button>
-            </Box>
-          ))}
+      <Box>
+        <TrendingSection
+          trending={trending}
+          handleFavoriteClick={handleFavoriteClick}
+        />
       </Box>
+      <Box>
+        <Typography variant='h3' fontWeight='light' m={1}>
+          Search Results
+        </Typography>
+        <Box sx={style.row}>
+          {movies
+            .filter((movie) => movie.poster_path !== null)
+            .map((movie, index) => (
+              <Box className='image-container' key={index}>
+                <Button sx={style.button}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                    alt='movie'
+                  />
+                  <Box
+                    className='overlay'
+                    onClick={() => handleFavoriteClick(movie)}
+                  >
+                    <AddFavorite />
+                  </Box>
+                </Button>
+              </Box>
+            ))}
+        </Box>
+      </Box>
+
       <Box>
         <FavoritesSection
           favorites={favorites}
