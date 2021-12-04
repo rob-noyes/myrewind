@@ -2,7 +2,6 @@ import React from 'react';
 import Box from '@mui/system/Box';
 import Button from '@mui/material/Button';
 import MovieListHeading from '../components/MovieListHeading';
-import Search from '../components/Search';
 import AddFavorite from '../components/AddFavorite';
 import FavoritesSection from '../components/FavoritesSection';
 import TrendingSection from '../components/TrendingSection';
@@ -71,9 +70,11 @@ export default function MovieList({
 }) {
   return (
     <Box>
-      <Box sx={style.heading}>
-        <MovieListHeading heading='Cinema List' />
-        <Search setSearchValue={setSearchValue} />
+      <Box>
+        <MovieListHeading
+          heading='Cinema List'
+          setSearchValue={setSearchValue}
+        />
       </Box>
       <Box>
         <TrendingSection
