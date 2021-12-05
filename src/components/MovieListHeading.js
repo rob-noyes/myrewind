@@ -8,7 +8,7 @@ const style = {
     borderRadius: '1rem',
   },
   search: {
-    width: '30rem',
+    maxWidth: '30rem',
   },
   heading: {
     display: 'flex',
