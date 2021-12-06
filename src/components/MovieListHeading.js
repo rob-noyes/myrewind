@@ -1,4 +1,10 @@
-import { Link, Typography, TextField, Autocomplete } from '@mui/material';
+import {
+  Link,
+  Typography,
+  TextField,
+  Autocomplete,
+  Button,
+} from '@mui/material';
 import Box from '@mui/system/Box';
 import React from 'react';
 import { Link as Linking } from 'react-router-dom';
@@ -19,10 +25,22 @@ const style = {
     marginX: '.5rem',
     fontSize: '1.2rem',
   },
+  movieItem: {
+    display: 'flex',
+    flexDirection: 'column',
+    margin: '1rem',
+    color: '#000000',
+    textDecoration: 'none',
+  },
 };
 
 export default function MovieListHeading({ heading, setSearchValue, movies }) {
-  const moviesFilter = movies.map((movie) => movie.title);
+  const moviesFilter = movies.map((movie) => {
+    return {
+      title: movie.title,
+      key: movie.id,
+    };
+  });
 
   return (
     <Box sx={style.heading}>
@@ -30,33 +48,30 @@ export default function MovieListHeading({ heading, setSearchValue, movies }) {
         <Typography variant='h2'>{heading}</Typography>
       </Link>
       <Box sx={style.col}>
-        {/* <Autocomplete
-          sx={style.search}
-          filterOptions={(x) => x}
-          options={moviesFilter}
-          getOptionLabel={(option) => {
-            return option;
-          }}
-          isOptionEqualToValue={(option, value) => option.title === value.title}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label='Search Movies'
-              InputProps={{ ...params.InputProps }}
-            />
-          )}
-          onInputChange={(e) => setSearchValue(e.target.value)}
-          onChange={(e, value) => (
-            <Linking to={`/movie/${value}`}>{value}</Linking>
-          )}
-        /> */}
         <Autocomplete
           selectOnFocus
           sx={style.search}
-          options={moviesFilter}
+          options={movies}
+          getOptionLabel={(option) => option.title}
+          renderOption={(option) => (
+            console.log(option),
+            (
+              <Linking
+                key={option.key}
+                to={`/movie/${option.key.replace(/[.':\s]/g, '')}`}
+              >
+                <Typography underline='none' sx={style.movieItem}>
+                  {option.key}
+                </Typography>
+              </Linking>
+            )
+          )}
           renderInput={(params) => <TextField {...params} label='Search' />}
           onInputChange={(e) => setSearchValue(e.target.value)}
-          onChange={(e, value) => setSearchValue(value)}
+          onChange={(e, value) => {
+            console.log(e);
+            setSearchValue(value);
+          }}
         />
         {/* <TextField
           sx={style.search}
