@@ -64,6 +64,9 @@ function App() {
 
   //Adding a new movie to the favorites list
   const addFavoriteMovie = (movie) => {
+    if (favorites === null) {
+      setFavorites(movie);
+    }
     const newFavoriteList = [...favorites, movie];
     const favoriteExists = favorites.filter((fav) => fav.id === movie.id);
     if (favoriteExists.length === 0) {
