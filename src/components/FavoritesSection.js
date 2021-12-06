@@ -31,26 +31,24 @@ export default function FavoritesSection({ favorites, removeFavoriteMovie }) {
         Favorites
       </Typography>
       <Box sx={style.row}>
-        {favorites
-          .filter((movie) => movie.poster_path !== null)
-          .map((movie, index) => (
-            <Box className='image-container' key={index}>
-              <Button sx={style.button}>
-                <Link to={`/movie/${movie.title.replace(/[.':\s]/g, '')}`}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-                    alt='movie'
-                  />
-                </Link>
-                <Box
-                  className='overlay'
-                  onClick={() => removeFavoriteMovie(movie)}
-                >
-                  <RemoveFavorite />
-                </Box>
-              </Button>
-            </Box>
-          ))}
+        {favorites.map((movie, index) => (
+          <Box className='image-container' key={index}>
+            <Button sx={style.button}>
+              <Link to={`/movie/${movie.title.replace(/[.':\s]/g, '')}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                  alt='movie'
+                />
+              </Link>
+              <Box
+                className='overlay'
+                onClick={() => removeFavoriteMovie(movie)}
+              >
+                <RemoveFavorite />
+              </Box>
+            </Button>
+          </Box>
+        ))}
       </Box>
     </Box>
   );
