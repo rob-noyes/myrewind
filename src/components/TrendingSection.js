@@ -10,7 +10,6 @@ const style = {
     flexDirection: 'row',
     overflowX: 'auto',
     overflowY: 'hidden',
-
     justifyContent: 'start',
   },
 
