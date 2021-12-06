@@ -21,7 +21,7 @@ const style = {
   },
 };
 
-export default function TrendingSection({ trending, handleFavoriteClick }) {
+export default function TrendingSection({ trending, addFavoriteMovie }) {
   return (
     <Box>
       <Typography variant='h3' fontWeight='light' m={1}>
@@ -37,12 +37,11 @@ export default function TrendingSection({ trending, handleFavoriteClick }) {
                   <img
                     src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
                     alt='movie'
-                    onClick={() => console.log('you clicked me')}
                   />
                 </Link>
                 <Box
                   className='overlay'
-                  onClick={() => handleFavoriteClick(movie)}
+                  onClick={() => addFavoriteMovie(movie)}
                 >
                   <AddFavorite />
                 </Box>

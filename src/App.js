@@ -13,9 +13,14 @@ const theme = createTheme({
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState([
+    {
+      test: 'test',
+    },
+  ]);
   const [searchValue, setSearchValue] = useState('star wars');
   const [trending, setTrending] = useState([]);
+  console.log(favorites);
 
   // fetch movie API
   const getMovieRequest = async (searchValue) => {
@@ -84,7 +89,7 @@ function App() {
           element={
             <MovieList
               movies={movies}
-              handleFavoriteClick={addFavoriteMovie}
+              addFavoriteMovie={addFavoriteMovie}
               setSearchValue={setSearchValue}
               favorites={favorites}
               removeFavoriteMovie={removeFavoriteMovie}

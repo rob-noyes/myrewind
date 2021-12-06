@@ -41,7 +41,7 @@ export default function FavoritesSection({ favorites, removeFavoriteMovie }) {
       </Typography>
       <Box sx={style.row}>
         {favorites
-          .filter((movie) => movie.poster_path !== null)
+          .filter((movie) => movie.poster_path !== undefined)
           .map((movie, index) => (
             <Box className='image-container' key={index}>
               <Button sx={style.button}>

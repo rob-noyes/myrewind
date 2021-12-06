@@ -73,7 +73,7 @@ const style = {
 export default function MovieList({
   movies,
   setSearchValue,
-  handleFavoriteClick,
+  addFavoriteMovie,
   favorites,
   removeFavoriteMovie,
   trending,
@@ -90,7 +90,7 @@ export default function MovieList({
       <Box>
         <TrendingSection
           trending={trending}
-          handleFavoriteClick={handleFavoriteClick}
+          addFavoriteMovie={addFavoriteMovie}
         />
       </Box>
       {/* <Box>
