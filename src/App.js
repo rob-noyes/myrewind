@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import { Routes, Route } from 'react-router';
 import MovieList from './pages/MovieList';
 import { grey } from '@mui/material/colors';
-import FavoritesSection from './components/FavoritesSection';
+import Movie from './pages/Movie';
 
 const theme = createTheme({
   palette: {
@@ -28,8 +28,6 @@ function App() {
       setMovies(responseJson.results);
     }
   };
-
-  console.log(process.env.REACT_APP_API_KEY);
 
   //fetch trending movies
   const getTrendingRequest = async () => {
@@ -79,6 +77,12 @@ function App() {
     saveToLocalStorage(newFavoriteList);
   };
 
+  const style = {
+    scrollbar: {
+      overflow: 'hidden',
+    },
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Routes>
@@ -86,6 +90,7 @@ function App() {
           path='/'
           element={
             <MovieList
+              sx={style.scrollbar}
               movies={movies}
               handleFavoriteClick={addFavoriteMovie}
               setSearchValue={setSearchValue}
@@ -95,6 +100,7 @@ function App() {
             />
           }
         />
+        <Route path='/movie/:id' element={<Movie movies={movies} />} />
       </Routes>
     </ThemeProvider>
   );
