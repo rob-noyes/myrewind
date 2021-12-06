@@ -14,7 +14,7 @@ const theme = createTheme({
 function App() {
   const [movies, setMovies] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState('star wars');
   const [trending, setTrending] = useState([]);
 
   // fetch movie API
@@ -35,7 +35,6 @@ function App() {
     const response = await fetch(url);
     const json = await response.json();
     setTrending(json.results);
-    console.log(json.results);
   };
 
   //useEffect to refresh on each searchvalue update
@@ -77,12 +76,6 @@ function App() {
     saveToLocalStorage(newFavoriteList);
   };
 
-  const style = {
-    scrollbar: {
-      overflow: 'hidden',
-    },
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <Routes>
@@ -90,7 +83,6 @@ function App() {
           path='/'
           element={
             <MovieList
-              sx={style.scrollbar}
               movies={movies}
               handleFavoriteClick={addFavoriteMovie}
               setSearchValue={setSearchValue}
@@ -100,7 +92,18 @@ function App() {
             />
           }
         />
-        <Route path='/movie/:id' element={<Movie movies={movies} />} />
+        <Route
+          path='/movie/:title'
+          element={
+            <Movie
+              movies={movies}
+              setSearchValue={setSearchValue}
+              addFavoriteMovie={addFavoriteMovie}
+              removeFavoriteMovie={removeFavoriteMovie}
+              trending={trending}
+            />
+          }
+        />
       </Routes>
     </ThemeProvider>
   );

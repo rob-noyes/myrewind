@@ -3,6 +3,7 @@ import Box from '@mui/system/Box';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import AddFavorite from './AddFavorite';
+import { Link } from 'react-router-dom';
 
 const style = {
   row: {
@@ -32,10 +33,13 @@ export default function TrendingSection({ trending, handleFavoriteClick }) {
           .map((movie, index) => (
             <Box className='image-container' key={index}>
               <Button sx={style.button}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-                  alt='movie'
-                />
+                <Link to={`/movie/${movie.title.replace(/[.':\s]/g, '')}`}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                    alt='movie'
+                    onClick={() => console.log('you clicked me')}
+                  />
+                </Link>
                 <Box
                   className='overlay'
                   onClick={() => handleFavoriteClick(movie)}

@@ -33,8 +33,9 @@ body {
   padding: 20px;
   text-align: center;
   display: flex;
+  z-index: 10;
 }
 
-.scrollbar-style {
-  scrollbar-color: '#';
+.title {
+  text-decoration: none;
 }

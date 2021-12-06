@@ -1,11 +1,8 @@
 import React from 'react';
 import Box from '@mui/system/Box';
-import Button from '@mui/material/Button';
 import MovieListHeading from '../components/MovieListHeading';
-import AddFavorite from '../components/AddFavorite';
 import FavoritesSection from '../components/FavoritesSection';
 import TrendingSection from '../components/TrendingSection';
-import { Typography } from '@mui/material';
 
 const style = {
   row: {
@@ -31,6 +28,11 @@ const style = {
     alignItems: 'center',
     marginX: '.5rem',
     fontSize: '1.2rem',
+  },
+
+  headBox: {
+    paddingBottom: '.75rem',
+    borderBottom: '1px solid grey',
   },
 
   movieRow: {
@@ -78,9 +80,9 @@ export default function MovieList({
 }) {
   return (
     <Box>
-      <Box>
+      <Box sx={style.headBox}>
         <MovieListHeading
-          heading='Cinema List'
+          heading='My Rewind'
           setSearchValue={setSearchValue}
           movies={movies}
         />
@@ -91,7 +93,7 @@ export default function MovieList({
           handleFavoriteClick={handleFavoriteClick}
         />
       </Box>
-      <Box>
+      {/* <Box>
         <Typography variant='h3' fontWeight='light' m={1}>
           Search Results
         </Typography>
@@ -115,7 +117,7 @@ export default function MovieList({
               </Box>
             ))}
         </Box>
-      </Box>
+      </Box> */}
 
       <Box>
         <FavoritesSection
