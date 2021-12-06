@@ -25,7 +25,7 @@ const style = {
 };
 
 export default function FavoritesSection({ favorites, removeFavoriteMovie }) {
-  if (favorites === null) {
+  if (favorites.length === 0) {
     return (
       <Box>
         <Typography variant='h3' fontWeight='light' m={1}>
