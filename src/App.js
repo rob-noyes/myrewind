@@ -14,7 +14,7 @@ const theme = createTheme({
 function App() {
   const [movies, setMovies] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState('star wars');
   const [trending, setTrending] = useState([]);
 
   // fetch movie API
@@ -28,7 +28,6 @@ function App() {
       setMovies(responseJson.results);
     }
   };
-  console.log(movies);
 
   //fetch trending movies
   const getTrendingRequest = async () => {
@@ -60,7 +59,7 @@ function App() {
 
   //Adding a new movie to the favorites list
   const addFavoriteMovie = (movie) => {
-    const newFavoriteList = favorites ? [...favorites, movie] : [];
+    const newFavoriteList = [...favorites, movie];
     const favoriteExists = favorites.filter((fav) => fav.id === movie.id);
     if (favoriteExists.length === 0) {
       saveToLocalStorage(newFavoriteList);
@@ -81,7 +80,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Routes>
         <Route
-          path='/cinema-list/'
+          path='/'
           element={
             <MovieList
               movies={movies}
@@ -94,7 +93,7 @@ function App() {
           }
         />
         <Route
-          path='/cinema-list/movie/:title'
+          path='/movie/:title'
           element={
             <Movie
               movies={movies}
