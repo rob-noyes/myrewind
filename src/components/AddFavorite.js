@@ -20,7 +20,7 @@ export default function AddFavorite() {
   return (
     <Box>
       <Typography sx={style.favorite}>
-        Add to Favorites <FavoriteIcon sx={style.heart} />
+        Add Favorite <FavoriteIcon sx={style.heart} />
       </Typography>
     </Box>
   );

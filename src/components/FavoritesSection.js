@@ -10,7 +10,6 @@ const style = {
     flexDirection: 'row',
     overflowX: 'auto',
     overflowY: 'hidden',
-
     justifyContent: 'start',
   },
 
@@ -37,13 +36,13 @@ export default function FavoritesSection({ favorites, removeFavoriteMovie }) {
                   src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
                   alt='movie'
                 />
+                <Box
+                  className='overlay'
+                  onClick={() => removeFavoriteMovie(movie)}
+                >
+                  <RemoveFavorite />
+                </Box>
               </Button>
-              <Box
-                className='overlay'
-                onClick={() => removeFavoriteMovie(movie)}
-              >
-                <RemoveFavorite />
-              </Box>
             </Box>
           ))}
       </Box>

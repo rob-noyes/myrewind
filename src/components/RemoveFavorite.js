@@ -9,6 +9,7 @@ const style = {
     fontSize: '12px',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   heart: {
     marginLeft: '5px',
@@ -19,7 +20,7 @@ export default function RemoveFavorite() {
   return (
     <Box>
       <Typography sx={style.favorite}>
-        Remove to Favorites <DeleteIcon sx={style.heart} />
+        Remove Favorite <DeleteIcon sx={style.heart} />
       </Typography>
     </Box>
   );

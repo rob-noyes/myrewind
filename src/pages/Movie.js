@@ -1,5 +1,5 @@
 import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
+import { Button, Paper } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import MovieListHeading from '../components/MovieListHeading';
@@ -29,8 +29,12 @@ const style = {
   movieCard: {
     display: 'flex',
     flexDirection: { xs: 'column', sm: 'row' },
+    justifyContent: 'center',
+    alignItems: 'center',
     background: '#0f0f0f',
     padding: '5%',
+    margin: { md: '5% 20%' },
+    color: '#ffffff',
   },
 
   movieContent: {
@@ -39,6 +43,17 @@ const style = {
 
   movieDetails: {
     marginY: '1rem',
+  },
+
+  movieButtons: {
+    marginY: '1rem',
+    display: 'flex',
+  },
+
+  button: {
+    marginRight: '1rem',
+    marginBottom: '1rem',
+    width: '100%',
   },
 };
 
@@ -68,24 +83,44 @@ export default function Movie({
         )
         //Maps each movie with poster, title, release date, rating, and overview
         .map((movie) => (
-          <Box key={movie.id} sx={style.movieCard} maxWidth='xl'>
+          <Paper key={movie.id} sx={style.movieCard} elevation={8}>
             <img
               src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
               alt='movie'
             />
             <Box sx={style.movieContent}>
-              <Typography sx={style.movieDetails} variant='h2'>
-                {movie.title}
-              </Typography>
-              <Typography sx={style.movieDetails}>
-                Released: {movie.release_date.slice(0, 4)}
-              </Typography>
-              <Typography sx={style.movieDetails}>
-                Rating: {movie.vote_average}
-              </Typography>
-              <Typography sx={style.movieDetails}>{movie.overview}</Typography>
+              <Box>
+                <Typography sx={style.movieDetails} variant='h2'>
+                  {movie.title}
+                </Typography>
+                <Typography sx={style.movieDetails} variant='h6'>
+                  Released: {movie.release_date.slice(0, 4)}
+                </Typography>
+                <Typography sx={style.movieDetails} variant='h6'>
+                  Rating: {movie.vote_average}
+                </Typography>
+                <Typography sx={style.movieDetails}>
+                  {movie.overview}
+                </Typography>
+              </Box>
+              <Box sx={style.movieButtons}>
+                <Button
+                  variant='contained'
+                  sx={style.button}
+                  onClick={() => addFavoriteMovie(movie)}
+                >
+                  Add Favorite
+                </Button>
+                <Button
+                  variant='contained'
+                  sx={style.button}
+                  onClick={() => removeFavoriteMovie(movie)}
+                >
+                  Remove Favorite
+                </Button>
+              </Box>
             </Box>
-          </Box>
+          </Paper>
         ))}
     </Box>
   );
