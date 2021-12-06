@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
 import Button from '@mui/material/Button';
 import RemoveFavorite from './RemoveFavorite';
+import { Link } from 'react-router-dom';
 
 const style = {
   row: {
@@ -18,6 +19,9 @@ const style = {
     padding: '.75rem',
     opacity: 1,
   },
+  remove: {
+    zIndex: 10,
+  },
 };
 
 export default function FavoritesSection({ favorites, removeFavoriteMovie }) {
@@ -32,10 +36,12 @@ export default function FavoritesSection({ favorites, removeFavoriteMovie }) {
           .map((movie, index) => (
             <Box className='image-container' key={index}>
               <Button sx={style.button}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-                  alt='movie'
-                />
+                <Link to={`/movie/${movie.title.replace(/[.':\s]/g, '')}`}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                    alt='movie'
+                  />
+                </Link>
                 <Box
                   className='overlay'
                   onClick={() => removeFavoriteMovie(movie)}

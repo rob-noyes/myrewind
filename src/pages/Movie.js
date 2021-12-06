@@ -33,7 +33,7 @@ const style = {
     alignItems: 'center',
     background: '#0f0f0f',
     padding: '5%',
-    margin: { md: '5% 20%' },
+    margin: { xl: '5% 20%' },
     color: '#ffffff',
   },
 
@@ -97,7 +97,7 @@ export default function Movie({
                   Released: {movie.release_date.slice(0, 4)}
                 </Typography>
                 <Typography sx={style.movieDetails} variant='h6'>
-                  Rating: {movie.vote_average}
+                  Rating: {movie.vote_average} / 10
                 </Typography>
                 <Typography sx={style.movieDetails}>
                   {movie.overview}
