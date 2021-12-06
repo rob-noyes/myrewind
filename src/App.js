@@ -80,7 +80,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Routes>
         <Route
-          path='/'
+          path='/cinema-list/'
           element={
             <MovieList
               movies={movies}
@@ -93,7 +93,7 @@ function App() {
           }
         />
         <Route
-          path='/movie/:title'
+          path='/cinema-list/movie/:title'
           element={
             <Movie
               movies={movies}
