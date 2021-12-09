@@ -13,19 +13,14 @@ const theme = createTheme({
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [favorites, setFavorites] = useState([
-    {
-      test: 'test',
-    },
-  ]);
+  const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('star wars');
   const [trending, setTrending] = useState([]);
-  console.log(favorites);
 
   // fetch movie API
   const getMovieRequest = async (searchValue) => {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US&query=${searchValue}`;
-    // const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=1f686e53`;
+
     const response = await fetch(url);
     const responseJson = await response.json();
 
@@ -49,28 +44,14 @@ function App() {
 
   //refresh movie favorites with localstorage
   useEffect(() => {
-    const movieFavorites = JSON.parse(
-      localStorage.getItem('react-movie-app-favorites')
-    );
-
-    setFavorites(movieFavorites);
     getTrendingRequest();
   }, []);
 
-  //Creating Local Storage for favorites list
-  const saveToLocalStorage = (items) => {
-    localStorage.setItem('react-movie-app-favorites', JSON.stringify(items));
-  };
-
   //Adding a new movie to the favorites list
   const addFavoriteMovie = (movie) => {
-    if (favorites === null) {
-      setFavorites(movie);
-    }
     const newFavoriteList = [...favorites, movie];
     const favoriteExists = favorites.filter((fav) => fav.id === movie.id);
     if (favoriteExists.length === 0) {
-      saveToLocalStorage(newFavoriteList);
       setFavorites(newFavoriteList);
     }
   };
@@ -81,7 +62,6 @@ function App() {
       (favorite) => favorite.id !== movie.id
     );
     setFavorites(newFavoriteList);
-    saveToLocalStorage(newFavoriteList);
   };
 
   return (
@@ -109,6 +89,7 @@ function App() {
               addFavoriteMovie={addFavoriteMovie}
               removeFavoriteMovie={removeFavoriteMovie}
               trending={trending}
+              favorite={favorites}
             />
           }
         />

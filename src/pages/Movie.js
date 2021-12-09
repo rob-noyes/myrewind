@@ -63,6 +63,7 @@ export default function Movie({
   trending,
   addFavoriteMovie,
   removeFavoriteMovie,
+  favorites,
 }) {
   const movieList = trending.concat(movies);
   console.log(movieList);
