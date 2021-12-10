@@ -1,6 +1,5 @@
 import React from 'react';
 import Box from '@mui/system/Box';
-import MovieListHeading from '../components/MovieListHeading';
 import FavoritesSection from '../components/FavoritesSection';
 import TrendingSection from '../components/TrendingSection';
 
@@ -80,13 +79,6 @@ export default function MovieList({
 }) {
   return (
     <Box>
-      <Box sx={style.headBox}>
-        <MovieListHeading
-          heading='My Rewind'
-          setSearchValue={setSearchValue}
-          movies={movies}
-        />
-      </Box>
       <Box>
         <TrendingSection
           trending={trending}

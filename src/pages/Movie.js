@@ -2,7 +2,6 @@ import Typography from '@mui/material/Typography';
 import { Button, Paper } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import MovieListHeading from '../components/MovieListHeading';
 
 const style = {
   headBox: {
@@ -69,13 +68,6 @@ export default function Movie({
   console.log(movieList);
   return (
     <Box>
-      <Box sx={style.headBox}>
-        <MovieListHeading
-          heading='My Rewind'
-          setSearchValue={setSearchValue}
-          movies={movies}
-        />
-      </Box>
       {movieList
         .filter(
           (movie) =>
@@ -86,7 +78,7 @@ export default function Movie({
         .map((movie) => (
           <Paper key={movie.id} sx={style.movieCard} elevation={8}>
             <img
-              src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
               alt='movie'
             />
             <Box sx={style.movieContent}>
