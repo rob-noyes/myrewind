@@ -21,6 +21,8 @@ const style = {
     alignItems: 'center',
     marginX: '.5rem',
     fontSize: '1.2rem',
+    paddingBottom: '.75rem',
+    borderBottom: '1px solid grey',
   },
 
   movieItem: {

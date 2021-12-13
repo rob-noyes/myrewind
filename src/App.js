@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router';
 import MovieList from './pages/MovieList';
 import { grey } from '@mui/material/colors';
 import Movie from './pages/Movie';
+import MovieListHeading from './components/MovieListHeading';
 
 const theme = createTheme({
   palette: {
@@ -66,6 +67,11 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <MovieListHeading
+        heading='My Rewind'
+        setSearchValue={setSearchValue}
+        movies={movies}
+      />
       <Routes>
         <Route
           path='/'
