@@ -55,6 +55,7 @@ function App() {
     if (favoriteExists.length === 0) {
       setFavorites(newFavoriteList);
     }
+    console.log(favorites);
   };
 
   //Removing a movie from the favorites list through filtering IDs

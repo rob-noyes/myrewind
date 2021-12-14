@@ -58,14 +58,15 @@ const style = {
 
 export default function Movie({
   movies,
-  setSearchValue,
   trending,
   addFavoriteMovie,
   removeFavoriteMovie,
   favorites,
 }) {
   const movieList = trending.concat(movies);
-  console.log(movieList);
+  const movieLists = movieList.concat(favorites);
+  console.log(favorites);
+
   return (
     <Box>
       {movieList
