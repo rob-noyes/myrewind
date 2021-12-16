@@ -1,16 +1,11 @@
 import { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { Routes, Route } from 'react-router';
-import MovieList from './pages/MovieList';
 import { grey } from '@mui/material/colors';
 import Movie from './pages/Movie';
 import MovieListHeading from './components/MovieListHeading';
-
-const theme = createTheme({
-  palette: {
-    primary: grey,
-  },
-});
+import Homepage from './pages/Homepage';
+import './index.css';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -35,7 +30,7 @@ function App() {
     const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=8a2b9a4f857805da801ad11b8a954949`;
     const response = await fetch(url);
     const json = await response.json();
-    setTrending(json.results);
+    setTrending(json.results.filter((movie) => movie.poster_path !== null));
   };
 
   //useEffect to refresh on each searchvalue update
@@ -67,7 +62,7 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <MovieListHeading
         heading='My Rewind'
         setSearchValue={setSearchValue}
@@ -77,7 +72,7 @@ function App() {
         <Route
           path='/'
           element={
-            <MovieList
+            <Homepage
               movies={movies}
               addFavoriteMovie={addFavoriteMovie}
               setSearchValue={setSearchValue}
@@ -101,7 +96,7 @@ function App() {
           }
         />
       </Routes>
-    </ThemeProvider>
+    </>
   );
 }
 

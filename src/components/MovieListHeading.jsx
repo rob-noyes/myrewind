@@ -75,11 +75,6 @@ export default function MovieListHeading({
             setSearchValue(value);
           }}
         />
-        {/* <TextField
-          sx={style.search}
-          placeholder='Search Movies'
-          onChange={(e) => setSearchValue(e.target.value)}
-        ></TextField> */}
       </Box>
     </Box>
   );
