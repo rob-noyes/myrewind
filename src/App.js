@@ -1,102 +1,18 @@
-import { useState, useEffect } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material';
-import { Routes, Route } from 'react-router';
-import { grey } from '@mui/material/colors';
-import Movie from './pages/Movie';
-import MovieListHeading from './components/MovieListHeading';
-import Homepage from './pages/Homepage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
+import Navbar from './components/Navbar';
+import Homepage from './pages/Homepage';
 
 function App() {
-  const [movies, setMovies] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-  const [searchValue, setSearchValue] = useState('star wars');
-  const [trending, setTrending] = useState([]);
-
-  // fetch movie API
-  const getMovieRequest = async (searchValue) => {
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US&query=${searchValue}`;
-
-    const response = await fetch(url);
-    const responseJson = await response.json();
-
-    if (responseJson.results !== undefined) {
-      setMovies(responseJson.results);
-    }
-  };
-
-  //fetch trending movies
-  const getTrendingRequest = async () => {
-    const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=8a2b9a4f857805da801ad11b8a954949`;
-    const response = await fetch(url);
-    const json = await response.json();
-    setTrending(json.results.filter((movie) => movie.poster_path !== null));
-  };
-
-  //useEffect to refresh on each searchvalue update
-  useEffect(() => {
-    getMovieRequest(searchValue);
-  }, [searchValue]);
-
-  //refresh movie favorites with localstorage
-  useEffect(() => {
-    getTrendingRequest();
-  }, []);
-
-  //Adding a new movie to the favorites list
-  const addFavoriteMovie = (movie) => {
-    const newFavoriteList = [...favorites, movie];
-    const favoriteExists = favorites.filter((fav) => fav.id === movie.id);
-    if (favoriteExists.length === 0) {
-      setFavorites(newFavoriteList);
-    }
-    console.log(favorites);
-  };
-
-  //Removing a movie from the favorites list through filtering IDs
-  const removeFavoriteMovie = (movie) => {
-    const newFavoriteList = favorites.filter(
-      (favorite) => favorite.id !== movie.id
-    );
-    setFavorites(newFavoriteList);
-  };
-
   return (
-    <>
-      <MovieListHeading
-        heading='My Rewind'
-        setSearchValue={setSearchValue}
-        movies={movies}
-      />
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <Homepage
-              movies={movies}
-              addFavoriteMovie={addFavoriteMovie}
-              setSearchValue={setSearchValue}
-              favorites={favorites}
-              removeFavoriteMovie={removeFavoriteMovie}
-              trending={trending}
-            />
-          }
-        />
-        <Route
-          path='/movie/:title'
-          element={
-            <Movie
-              movies={movies}
-              setSearchValue={setSearchValue}
-              addFavoriteMovie={addFavoriteMovie}
-              removeFavoriteMovie={removeFavoriteMovie}
-              trending={trending}
-              favorite={favorites}
-            />
-          }
-        />
-      </Routes>
-    </>
+    <div className='bg-black text-white'>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

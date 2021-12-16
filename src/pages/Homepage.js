@@ -1,29 +1,11 @@
 import React from 'react';
-import FavoritesSection from '../components/FavoritesSection';
-import TrendingSection from '../components/TrendingSection';
 
-export default function Homepage({
-  movies,
-  setSearchValue,
-  addFavoriteMovie,
-  favorites,
-  removeFavoriteMovie,
-  trending,
-}) {
+function Homepage() {
   return (
     <div>
-      <div>
-        <TrendingSection
-          trending={trending}
-          addFavoriteMovie={addFavoriteMovie}
-        />
-      </div>
-      <div>
-        <FavoritesSection
-          favorites={favorites}
-          removeFavoriteMovie={removeFavoriteMovie}
-        />
-      </div>
+      <h2 className='text-2xl'>Here is some Content</h2>
     </div>
   );
 }
+
+export default Homepage;
