@@ -19,7 +19,7 @@ function Navbar() {
     <nav
       className={
         toggleSearch
-          ? 'bg-secondary flex justify-between items-center h-12'
+          ? 'bg-secondary flex justify-between items-center h-13'
           : 'flex justify-between items-center h-12 bg-primary'
       }
     >
