@@ -5,7 +5,7 @@ import Homepage from './pages/Homepage';
 
 function App() {
   return (
-    <div className='bg-black text-white'>
+    <div className='bg-black text-white w-full'>
       <Router>
         <Navbar />
         <Routes>
