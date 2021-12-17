@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function MovieSearch({ movies, toggleSearch }) {
+function MovieSearch({
+  movies,
+  toggleSearch,
+  movieId,
+  setMovieId,
+  setToggleSearch,
+}) {
   if (movies === undefined || movies.length === 0) {
     return (
       <p
@@ -11,6 +17,11 @@ function MovieSearch({ movies, toggleSearch }) {
       </p>
     );
   }
+
+  const getMovie = (movie) => {
+    setMovieId(movie);
+    setToggleSearch(!toggleSearch);
+  };
 
   return (
     <div
@@ -23,10 +34,11 @@ function MovieSearch({ movies, toggleSearch }) {
       {movies
         .filter((movie) => movie.poster_path !== null)
         .map((movie) => (
-          <Link onClick={toggleSearch} to={`/movie/${movie.id}`}>
+          <Link to={`/movie/${movie.id}`} value={movie}>
             <div
               className='flex flex-row px-4 py-4 border-b-2 border-b-primary'
               key={movie.id}
+              onClick={() => getMovie(movie.id)}
             >
               <img
                 src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
