@@ -3,7 +3,7 @@ import { MdClose, MdLocalMovies } from 'react-icons/md';
 import { FiMenu, FiSearch } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({ setSearch, search }) {
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleMenu, setToggleMenu] = useState(false);
 
@@ -13,6 +13,11 @@ function Navbar() {
 
   const onClickMenu = () => {
     setToggleMenu(!toggleMenu);
+  };
+
+  const onChangeSearch = (e) => {
+    const searchingQuery = e.target.value;
+    setSearch(searchingQuery);
   };
 
   return (
@@ -27,7 +32,7 @@ function Navbar() {
         className={
           toggleMenu
             ? 'transition-all ease-in-out duration-300 transform translate-none fixed top-0 left-0  bg-secondary w-9/12 h-full'
-            : 'transition-all ease-in duration-50 transform -translate-x-50 w-0'
+            : 'transition-all ease-in duration-50 transform -translate-x-50 fixed w-0'
         }
       >
         <div
@@ -67,6 +72,7 @@ function Navbar() {
               ? 'transition ease-in-out duration-300 transform translate-y-0 text-lg h-14 w-full p-3 outline-none bg-secondary flex justify-center items-center'
               : '-translate-y-10 w-0 h-0 bg-secondary'
           }
+          onChange={onChangeSearch}
         />
         <button
           className={toggleSearch ? 'text-2xl p-2 text-white' : 'hidden'}
@@ -83,7 +89,9 @@ function Navbar() {
           </Link>
         </div>
         <button
-          className={toggleSearch ? 'hidden' : 'right-0 text-2xl p-2'}
+          className={
+            toggleSearch ? 'hidden' : 'fixed right-0 top-2 text-2xl p-2'
+          }
           onClick={onClickSearch}
         >
           <FiSearch />
