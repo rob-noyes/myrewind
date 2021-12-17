@@ -3,10 +3,11 @@ import './index.css';
 import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage';
 import { useEffect, useState } from 'react';
+import MovieSearch from './components/MovieSearch';
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [search, setSearch] = useState('star wars');
+  const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [movieId, setMovieId] = useState([]);
   const [movieDetails, setMovieDetails] = useState([]);
@@ -18,46 +19,44 @@ function App() {
       );
       const data = await response.json();
       setMovies(data.results);
+      console.log(movies);
     };
     fetchSearch();
   }, [search]);
 
-  useEffect(() => {
-    const fetchMovieId = async () => {
-      setMovieId(
-        movies
-          .filter((movie) => movie.poster_path !== null)
-          .map((movie) => {
-            return movie.id;
-          }),
-        console.log(movieId)
-      );
-    };
+  // useEffect(() => {
+  //   const fetchMovieId = async () => {
+  //     setMovieId(
+  //       movies
+  //         .filter((movie) => movie.poster_path !== null)
+  //         .map((movie) => {
+  //           return movie.id;
+  //         }),
+  //       console.log(movieId)
+  //     );
+  //   };
 
-    fetchMovieId();
+  //   fetchMovieId();
 
-    const fetchMovieDetails = async () => {
-      const response = await fetch(`
-      https://api.themoviedb.org/3/movie/${movieId.map(
-        (id) => id
-      )}?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US`);
-      const data = await response.json();
-      setMovieDetails(data);
-      console.log(movieDetails);
-    };
+  //   const fetchMovieDetails = async () => {
+  //     const response = await fetch(`
+  //     https://api.themoviedb.org/3/movie/${movieId.map(
+  //       (id) => id
+  //     )}?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US`);
+  //     const data = await response.json();
+  //     setMovieDetails(data);
+  //     console.log(movieDetails);
+  //   };
 
-    fetchMovieDetails();
-  }, [search]);
+  //   fetchMovieDetails();
+  // }, [search]);
 
   return (
     <div className='bg-black text-white w-full'>
       <Router>
-        <Navbar setSearch={setSearch} search={search} />
+        <Navbar setSearch={setSearch} search={search} movies={movies} />
         <Routes>
-          <Route
-            path='/'
-            element={<Homepage movies={movies} search={search} />}
-          />
+          <Route path='/' element={<Homepage movies={movies} />} />
         </Routes>
       </Router>
     </div>
