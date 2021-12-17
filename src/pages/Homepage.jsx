@@ -1,11 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-function Homepage() {
-  return (
-    <div>
-      <h2 className='text-2xl'>Here is some Content</h2>
-    </div>
-  );
+function Homepage({ movies }) {
+  return <div>Test</div>;
 }
 
 export default Homepage;
