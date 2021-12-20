@@ -16,11 +16,21 @@ function Movie({ movieDetails }) {
   console.log(movieDetails);
   return (
     <div className='h-full'>
-      <img
-        className='h-48 w-full'
-        src={`https://image.tmdb.org/t/p/w500/${movieDetails.backdrop_path}`}
-        alt={`${movieDetails.title}`}
-      />
+      <div className='w-full'>
+        <div
+          style={{
+            backgroundImage: `linear-gradient(transparent, rgba(31, 31, 31, .5) 75%, rgba(31, 31, 31, 1) 100%), url(https://image.tmdb.org/t/p/w500/${movieDetails.backdrop_path})`,
+            height: '12rem',
+            width: '100%',
+            backgroundSize: 'cover',
+          }}
+        ></div>
+        {/* <img
+          className='h-48 w-full bg-gradient-to-t from-secondary to-transparent'
+          src={`https://image.tmdb.org/t/p/w500/${movieDetails.backdrop_path}`}
+          alt={`${movieDetails.title}`}
+        /> */}
+      </div>
 
       <div className='bg-secondary p-4 flex justify-between'>
         <div className='flex flex-col'>
