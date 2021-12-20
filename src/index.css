@@ -6,3 +6,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.background {
+  background: linear-gradient(transparent, #1f1f1f);
+}

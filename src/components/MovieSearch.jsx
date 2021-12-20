@@ -34,7 +34,7 @@ function MovieSearch({
       {movies
         .filter((movie) => movie.poster_path !== null)
         .map((movie) => (
-          <Link to={`/movie/${movie.id}`} value={movie}>
+          <Link to={`/movie/${movie.id}`} value={movie} key={movie.id}>
             <div
               className='flex flex-row px-4 py-4 border-b-2 border-b-primary'
               key={movie.id}
