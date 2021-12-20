@@ -10,6 +10,9 @@ module.exports = {
         secondary: '#1F1F1F',
         navcolor: '#121212',
       },
+      backgroundImage: {
+        backdrop: 'url(https://image.tmdb.org/t/p/w500/)',
+      },
     },
   },
   plugins: [],

@@ -4,7 +4,7 @@ import { FiMenu, FiSearch } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import MovieSearch from './MovieSearch';
 
-function Navbar({ setSearch, movies }) {
+function Navbar({ setSearch, movies, movieId, setMovieId }) {
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleMenu, setToggleMenu] = useState(false);
 
@@ -104,7 +104,13 @@ function Navbar({ setSearch, movies }) {
           </div>
         </div>
       </nav>
-      <MovieSearch movies={movies} toggleSearch={toggleSearch} />
+      <MovieSearch
+        movies={movies}
+        setToggleSearch={setToggleSearch}
+        toggleSearch={toggleSearch}
+        movieId={movieId}
+        setMovieId={setMovieId}
+      />
     </div>
   );
 }
