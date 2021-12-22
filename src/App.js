@@ -27,7 +27,7 @@ function App() {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US&append_to_response=videos`
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US&append_to_response=videos,credits`
       );
       const data = await response.json();
       setMovieDetails(data);
@@ -36,7 +36,7 @@ function App() {
   }, [movieId]);
 
   return (
-    <div className='bg-black text-white w-full'>
+    <div className='bg-black text-white w-full font-sans'>
       <Router>
         <Navbar
           setSearch={setSearch}
