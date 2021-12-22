@@ -94,9 +94,7 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
               </Link>
             </div>
             <button
-              className={
-                toggleSearch ? 'hidden' : 'fixed right-0 top-2 text-2xl p-2'
-              }
+              className={toggleSearch ? 'hidden' : 'relative text-2xl pr-2'}
               onClick={onClickSearch}
             >
               <FiSearch />

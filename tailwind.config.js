@@ -13,7 +13,14 @@ module.exports = {
       backgroundImage: {
         backdrop: 'url(https://image.tmdb.org/t/p/w500/)',
       },
+      borderRadius: {
+        half: '50%',
+      },
+    },
+    fontFamily: {
+      montserrat: ['Montserrat', 'sans-serif'],
+      opensans: ['Open Sans', 'sans-serif'],
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 };
