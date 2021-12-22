@@ -13,7 +13,6 @@ function Movie({ movieDetails }) {
     return <h2>Movie Database Error</h2>;
   }
 
-  console.log(movieDetails);
   return (
     <div className='h-full'>
       <div className='w-full'>
@@ -64,7 +63,7 @@ function Movie({ movieDetails }) {
         <h3 className='text-xl m-4'>Top Cast</h3>
         <ul className='flex no-wrap overflow-scroll overflow-y-hidden h-48'>
           {movieDetails.credits.cast.slice(0, 12).map((credit) => (
-            <div className=''>
+            <div className='' key={credit.name}>
               <li className='w-28'>
                 <div className='h-20 w-20 object-contain mx-4'>
                   <img

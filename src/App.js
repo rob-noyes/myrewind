@@ -7,11 +7,11 @@ import Movie from './pages/Movie';
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [moviePage, setMoviePage] = useState({});
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [movieId, setMovieId] = useState('');
   const [movieDetails, setMovieDetails] = useState([]);
+  const [trending, setTrending] = useState([]);
 
   useEffect(() => {
     const fetchSearch = async () => {
@@ -35,6 +35,18 @@ function App() {
     fetchMovieDetails();
   }, [movieId]);
 
+  useEffect(() => {
+    const fetchTrendingMovies = async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/popular?api_key=8a2b9a4f857805da801ad11b8a954949`
+      );
+      const data = await response.json();
+      console.log(data);
+      setTrending(data.results);
+    };
+    fetchTrendingMovies();
+  }, []);
+
   return (
     <div className='bg-black text-white w-full font-sans'>
       <Router>
@@ -46,7 +58,17 @@ function App() {
           setMovieId={setMovieId}
         />
         <Routes>
-          <Route path='/' element={<Homepage movies={movies} />} />
+          <Route
+            path='/'
+            element={
+              <Homepage
+                trending={trending}
+                setMovieDetails={setMovieDetails}
+                setMovieId={setMovieId}
+                movieId={movieId}
+              />
+            }
+          />
           <Route
             path='/movie/:id'
             element={<Movie movieDetails={movieDetails} />}
