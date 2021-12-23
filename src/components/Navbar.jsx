@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { MdClose, MdLocalMovies } from 'react-icons/md';
+import {
+  MdHome,
+  MdClose,
+  MdLocalMovies,
+  MdTv,
+  MdCollections,
+  MdAccountBox,
+} from 'react-icons/md';
 import { FiMenu, FiSearch } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import MovieSearch from './MovieSearch';
@@ -22,19 +29,19 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
   };
 
   return (
-    <div>
+    <div className=''>
       <nav
         className={
           toggleSearch
-            ? 'bg-secondary items-center h-14'
-            : 'flex justify-between items-center h-14 bg-navcolor'
+            ? 'bg-secondary items-center h-14 '
+            : 'flex justify-between items-center h-14 bg-navcolor '
         }
       >
-        <div className='flex flex-col'>
+        <div className='flex flex-col w-full'>
           <div
             className={
               toggleMenu
-                ? 'transition-all ease-in-out duration-300 transform translate-none fixed top-0 left-0  bg-secondary w-9/12 h-full'
+                ? 'transition-all ease-in-out duration-300 transform translate-none fixed top-0 left-0  bg-secondary w-9/12 md:w-3/12 h-full'
                 : 'transition-all ease-in duration-50 transform -translate-x-50 fixed w-0'
             }
           >
@@ -45,7 +52,10 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
                   : 'fixed -left-48 top-0'
               }
             >
-              <button className='white right-0 text-2xl' onClick={onClickMenu}>
+              <button
+                className='white right-0 text-2xl pr-4'
+                onClick={onClickMenu}
+              >
                 <MdClose />
               </button>
             </div>
@@ -53,18 +63,46 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
               className={toggleMenu ? 'flex left-0 text-xl' : 'fixed -left-48'}
             >
               <ul className='px-4 py-4'>
-                <li className='pb-3'>Search</li>
                 <Link
-                  to='/movies'
+                  to='/'
                   onClick={onClickMenu}
                   className='flex items-center pb-3'
                 >
-                  <MdLocalMovies className=' text-iconPrimary text-2xl' />
+                  <MdHome className='text-2xl' fill='#1BB6E7' />
+                  <li className='pl-3'>Home</li>
+                </Link>
+                <Link
+                  to='/'
+                  onClick={onClickMenu}
+                  className='flex items-center pb-3'
+                >
+                  <MdLocalMovies className='text-2xl' fill='#1BB6E7' />
                   <li className='pl-3'>Movies</li>
                 </Link>
-                <li className='pb-3'>TV Shows</li>
-                <li className='pb-3'>Collections</li>
-                <li className='pb-3'>Account</li>
+                <Link
+                  to='/'
+                  onClick={onClickMenu}
+                  className='flex items-center pb-3'
+                >
+                  <MdTv className=' text-2xl' fill='#1BB6E7' />
+                  <li className='pl-3'>TV Shows</li>
+                </Link>
+                <Link
+                  to='/'
+                  onClick={onClickMenu}
+                  className='flex items-center pb-3'
+                >
+                  <MdCollections className=' text-2xl' fill='#1BB6E7' />
+                  <li className='pl-3'>Collections</li>
+                </Link>
+                <Link
+                  to='/'
+                  onClick={onClickMenu}
+                  className='flex items-center pb-3'
+                >
+                  <MdAccountBox className=' text-2xl' fill='#1BB6E7' />
+                  <li className='pl-3'>Account</li>
+                </Link>
               </ul>
             </div>
           </div>
@@ -85,11 +123,15 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
             >
               <MdClose />
             </button>
-            <div className={toggleSearch ? 'hidden' : 'flex items-center'}>
+            <div
+              className={
+                toggleSearch ? 'hidden' : 'flex items-center md:10/12 lg:w-7/12'
+              }
+            >
               <button className='p-2 text-2xl text-white' onClick={onClickMenu}>
                 <FiMenu />
               </button>
-              <Link to='/' className='w-2/6'>
+              <Link to='/' className='w-2/6 md:w-2/12'>
                 <img src='../images/logo.png' className='' alt='' />
               </Link>
             </div>

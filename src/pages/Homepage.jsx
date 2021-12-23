@@ -9,7 +9,7 @@ function Homepage({ trending, setMovieId, movieId, topRated, upcoming }) {
 
   return (
     <div className=''>
-      <div className='bg-tertiary mb-4 pt-2'>
+      <div className='bg-tertiary mb-4 pt-6'>
         <h1 className='mx-4 mt-2 text-textPrimary text-3xl font-semibold'>
           Popular Movies
         </h1>
