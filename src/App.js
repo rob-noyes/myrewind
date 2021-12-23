@@ -12,6 +12,8 @@ function App() {
   const [movieId, setMovieId] = useState('');
   const [movieDetails, setMovieDetails] = useState([]);
   const [trending, setTrending] = useState([]);
+  const [topRated, setTopRated] = useState([]);
+  const [upcoming, setUpcoming] = useState([]);
 
   useEffect(() => {
     const fetchSearch = async () => {
@@ -36,6 +38,7 @@ function App() {
   }, [movieId]);
 
   useEffect(() => {
+    //Gets trending movies from TMDB
     const fetchTrendingMovies = async () => {
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/popular?api_key=8a2b9a4f857805da801ad11b8a954949`
@@ -44,7 +47,28 @@ function App() {
       console.log(data);
       setTrending(data.results);
     };
+
+    //Gets Top Rated movies from TMDB
+    const fetchTopRated = async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=8a2b9a4f857805da801ad11b8a954949`
+      );
+      const data = await response.json();
+      setTopRated(data.results);
+    };
+
+    //Gets Upcoming movies from TMDB
+    const fetchUpcoming = async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=8a2b9a4f857805da801ad11b8a954949`
+      );
+      const data = await response.json();
+      setUpcoming(data.results);
+    };
+
     fetchTrendingMovies();
+    fetchTopRated();
+    fetchUpcoming();
   }, []);
 
   return (
@@ -66,6 +90,8 @@ function App() {
                 setMovieDetails={setMovieDetails}
                 setMovieId={setMovieId}
                 movieId={movieId}
+                topRated={topRated}
+                upcoming={upcoming}
               />
             }
           />
