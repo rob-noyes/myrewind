@@ -3,11 +3,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#454545',
         iconPrimary: '#616161',
         textPrimary: '#1BB6E7',
         textSecondary: '#BCBCBC',
+        primary: '#454545',
         secondary: '#1F1F1F',
+        tertiary: '#1A1A1A',
         navcolor: '#121212',
       },
       backgroundImage: {
@@ -15,6 +16,10 @@ module.exports = {
       },
       borderRadius: {
         half: '50%',
+      },
+      height: {
+        112: '28rem',
+        120: '30rem',
       },
     },
     fontFamily: {
