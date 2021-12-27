@@ -33,7 +33,7 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
       <nav
         className={
           toggleSearch
-            ? 'bg-secondary items-center h-14 '
+            ? 'bg-secondary items-center h-14 z-10'
             : 'flex justify-between items-center h-14 bg-navcolor '
         }
       >
@@ -145,14 +145,14 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
             </button>
           </div>
         </div>
+        <MovieSearch
+          movies={movies}
+          setToggleSearch={setToggleSearch}
+          toggleSearch={toggleSearch}
+          movieId={movieId}
+          setMovieId={setMovieId}
+        />
       </nav>
-      <MovieSearch
-        movies={movies}
-        setToggleSearch={setToggleSearch}
-        toggleSearch={toggleSearch}
-        movieId={movieId}
-        setMovieId={setMovieId}
-      />
     </div>
   );
 }
