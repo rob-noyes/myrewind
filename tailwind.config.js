@@ -20,6 +20,13 @@ module.exports = {
       height: {
         112: '28rem',
         120: '30rem',
+        search: '800px',
+      },
+      width: {
+        searchResult: '1000px',
+      },
+      margin: {
+        search: '20%',
       },
     },
     fontFamily: {

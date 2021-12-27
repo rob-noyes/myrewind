@@ -27,7 +27,7 @@ function MovieSearch({
     <div
       className={
         toggleSearch
-          ? 'fixed w-full md:w-10/12 h-full overflow-scroll bg-secondary'
+          ? 'xl:mx-search w-full xl:w-7/12 xl:h-search overflow-scroll bg-secondary'
           : 'hidden'
       }
     >
