@@ -21,6 +21,12 @@ module.exports = {
         112: '28rem',
         120: '30rem',
       },
+      width: {
+        searchResult: '1000px',
+      },
+      margin: {
+        search: '20%',
+      },
     },
     fontFamily: {
       montserrat: ['Montserrat', 'sans-serif'],

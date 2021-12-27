@@ -29,7 +29,7 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
   };
 
   return (
-    <div className=''>
+    <div className='w-full flex flex-col'>
       <nav
         className={
           toggleSearch
@@ -106,13 +106,27 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
               </ul>
             </div>
           </div>
-          <div className='flex justify-center'>
+          <div className='flex justify-between  xl:justify-center'>
+            <div
+              className={
+                toggleSearch
+                  ? 'hidden'
+                  : 'flex items-center md:w-10/12 lg:w-7/12'
+              }
+            >
+              <button className='p-2 text-2xl text-white' onClick={onClickMenu}>
+                <FiMenu />
+              </button>
+              <Link to='/' className='w-32'>
+                <img src='../images/logo.png' className='' alt='' />
+              </Link>
+            </div>
             <input
               type='text'
               placeholder='Search'
               className={
                 toggleSearch
-                  ? 'transition ease-in-out duration-300 transform translate-y-0 text-lg h-14 w-full p-3 outline-none bg-secondary flex justify-center items-center'
+                  ? 'transition ease-in-out duration-300 transform translate-y-0 text-lg h-14 w-full p-3 outline-none bg-secondary flex justify-center items-center xl:w-7/12'
                   : '-translate-y-10 w-0 h-0 bg-secondary'
               }
               onChange={onChangeSearch}
@@ -123,18 +137,6 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
             >
               <MdClose />
             </button>
-            <div
-              className={
-                toggleSearch ? 'hidden' : 'flex items-center md:10/12 lg:w-7/12'
-              }
-            >
-              <button className='p-2 text-2xl text-white' onClick={onClickMenu}>
-                <FiMenu />
-              </button>
-              <Link to='/' className='w-2/6 md:w-2/12'>
-                <img src='../images/logo.png' className='' alt='' />
-              </Link>
-            </div>
             <button
               className={toggleSearch ? 'hidden' : 'relative text-2xl pr-2'}
               onClick={onClickSearch}
