@@ -72,7 +72,7 @@ function App() {
   }, []);
 
   return (
-    <div className='bg-black text-white w-full font-sans'>
+    <div className='bg-black lg:bg-tertiary text-white w-full font-sans'>
       <Router>
         <Navbar
           setSearch={setSearch}

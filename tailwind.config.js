@@ -28,6 +28,9 @@ module.exports = {
       margin: {
         search: '20%',
       },
+      boxShadow: {
+        bg: '0 0 0 9999px rgba(0, 0 ,0 , 0.8)',
+      },
     },
     fontFamily: {
       montserrat: ['Montserrat', 'sans-serif'],

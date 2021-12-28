@@ -14,12 +14,13 @@ function Movie({ movieDetails }) {
   }
 
   return (
-    <div className='h-full'>
+    <div className='h-full w-full lg:max-w-6xl lg:flex lg:flex-col lg:m-auto '>
       <div className='w-full'>
         <div
+          className='h-48 md:h-72 lg:h-96 xl:h-120'
           style={{
             backgroundImage: `linear-gradient(transparent, rgba(31, 31, 31, .5) 75%, rgba(31, 31, 31, 1) 100%), url(https://image.tmdb.org/t/p/w500/${movieDetails.backdrop_path})`,
-            height: '12rem',
+
             width: '100%',
             backgroundSize: 'cover',
           }}
@@ -48,7 +49,7 @@ function Movie({ movieDetails }) {
           </span>
         </div>
         <img
-          className='w-5/12'
+          className='w-5/12 xl:w-3/12'
           src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
           alt=''
         />
