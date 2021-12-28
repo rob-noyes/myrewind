@@ -33,7 +33,7 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
       <nav
         className={
           toggleSearch
-            ? 'bg-secondary items-center h-14 z-10'
+            ? 'bg-secondary items-center h-14 z-10 shadow-bg'
             : 'flex justify-between items-center h-14 bg-navcolor '
         }
       >
@@ -41,7 +41,7 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
           <div
             className={
               toggleMenu
-                ? 'transition-all ease-in-out duration-300 transform translate-none fixed top-0 left-0  bg-secondary w-9/12 md:w-3/12 h-full'
+                ? 'transition-all ease-in-out duration-300 transform translate-none fixed top-0 left-0  bg-secondary w-9/12 md:w-3/12 h-full shadow-bg'
                 : 'transition-all ease-in duration-50 transform -translate-x-50 fixed w-0'
             }
           >
