@@ -17,7 +17,7 @@ function Homepage({ trending, setMovieId, movieId, topRated, upcoming }) {
           {trending.map((movie) => (
             <div
               onClick={() => onClickRedirect(movie)}
-              className=' mx-2 shadow-xl bg-secondary rounded-md'
+              className=' mx-2 shadow-xl bg-secondary rounded-md border border-primary'
               key={movie.id}
             >
               <Link to={`/movie/${movie.id}`}>
@@ -49,7 +49,7 @@ function Homepage({ trending, setMovieId, movieId, topRated, upcoming }) {
           {upcoming.map((movie) => (
             <div
               onClick={() => onClickRedirect(movie)}
-              className=' mx-2 shadow-xl bg-secondary rounded-md'
+              className=' mx-2 shadow-xl bg-secondary rounded-md border border-primary'
               key={movie.id}
             >
               <Link to={`/movie/${movie.id}`}>
@@ -81,7 +81,7 @@ function Homepage({ trending, setMovieId, movieId, topRated, upcoming }) {
           {topRated.map((movie) => (
             <div
               onClick={() => onClickRedirect(movie)}
-              className=' mx-2 shadow-xl bg-secondary rounded-md'
+              className=' mx-2 shadow-xl bg-secondary rounded-md border border-primary'
               key={movie.id}
             >
               <Link to={`/movie/${movie.id}`}>

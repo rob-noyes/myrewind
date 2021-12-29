@@ -29,12 +29,12 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
   };
 
   return (
-    <div className='w-full flex flex-col'>
+    <div className='w-full flex flex-col '>
       <nav
         className={
           toggleSearch
             ? 'bg-secondary items-center h-14 z-10 shadow-bg'
-            : 'flex justify-between items-center h-14 bg-navcolor '
+            : 'flex justify-between items-center h-14 bg-navcolor shadow-lg '
         }
       >
         <div className='flex flex-col w-full'>
