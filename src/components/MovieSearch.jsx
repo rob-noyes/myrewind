@@ -27,7 +27,7 @@ function MovieSearch({
     <div
       className={
         toggleSearch
-          ? 'xl:mx-search w-full xl:w-7/12 xl:h-search overflow-scroll bg-secondary'
+          ? 'xl:mx-search w-full xl:w-7/12 xl:h-search overflow-y-scroll bg-secondary'
           : 'hidden'
       }
     >
@@ -36,14 +36,14 @@ function MovieSearch({
         .map((movie) => (
           <Link to={`/movie/${movie.id}`} value={movie} key={movie.id}>
             <div
-              className='flex flex-row px-4 py-4 border-b-2 border-primary'
+              className='flex flex-row px-4 py-4 border-b border-primary hover:bg'
               key={movie.id}
               onClick={() => getMovie(movie.id)}
             >
               <img
                 src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
                 alt=''
-                className='w-1/3 lg:w-1/12'
+                className='w-1/3 md:w-1/6 lg:w-1/12'
               />
               <div className='flex flex-col p-4'>
                 <h2 className='text-lg'>{movie.title}</h2>

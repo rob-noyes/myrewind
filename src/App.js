@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage';
 import { useEffect, useState } from 'react';
 import Movie from './pages/Movie';
+import Cast from './pages/Cast';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -98,6 +99,10 @@ function App() {
           <Route
             path='/movie/:id'
             element={<Movie movieDetails={movieDetails} />}
+          />
+          <Route
+            path='/movie/:id/cast'
+            element={<Cast movieDetails={movieDetails} />}
           />
         </Routes>
       </Router>
