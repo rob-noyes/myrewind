@@ -23,34 +23,39 @@ function Cast({ movieDetails }) {
       <h3 className=' mb-4 text-primary'>
         Cast <span className='text-textSecondary'>(In Credits Order)</span>
       </h3>
-      {movieDetails.credits.cast.map((credit) => (
-        <li
-          className='list-none border-b text-blue-600 bg-textSecondary h-14 object-contain flex flex-row justify-between  '
-          key={credit.name}
-        >
-          <div className='flex flex-row w-full justify-between items-center md:justify-start   '>
-            <div className='flex items-center'>
-              <img
-                className='object-cover w-8 h-12 '
-                src={
-                  credit.profile_path === null
-                    ? '/images/blankProfile.png'
-                    : `https://image.tmdb.org/t/p/w300/${credit.profile_path}`
-                }
-                alt=''
-              />
-              <Link to='/name/:id'>
-                <h2 className='pl-3 text-sm font-semibold md:w-96'>
-                  {credit.name}
-                </h2>
-              </Link>
-            </div>
-            <p className='text-xs text-left text-primary mr-1 line-clamp-1 lg:line-clamp-none'>
-              {credit.character}
-            </p>
-          </div>
-        </li>
-      ))}
+      {movieDetails.credits.cast.map(
+        (credit) => (
+          console.log(credit),
+          (
+            <li
+              className='list-none border-b text-blue-600 bg-textSecondary h-14 object-contain flex flex-row justify-between  '
+              key={credit.name}
+            >
+              <div className='flex flex-row w-full justify-between items-center md:justify-start   '>
+                <div className='flex items-center'>
+                  <img
+                    className='object-cover w-8 h-12 '
+                    src={
+                      credit.profile_path === null
+                        ? '/images/blankProfile.png'
+                        : `https://image.tmdb.org/t/p/w300/${credit.profile_path}`
+                    }
+                    alt=''
+                  />
+                  <Link to={`/name/${credit.id}`}>
+                    <h2 className='pl-3 text-sm font-semibold md:w-96'>
+                      {credit.name}
+                    </h2>
+                  </Link>
+                </div>
+                <p className='text-xs text-left text-primary mr-1 line-clamp-1 lg:line-clamp-none'>
+                  {credit.character}
+                </p>
+              </div>
+            </li>
+          )
+        )
+      )}
     </div>
   );
 }
