@@ -6,10 +6,13 @@ module.exports = {
         iconPrimary: '#616161',
         textPrimary: '#1BB6E7',
         textSecondary: '#BCBCBC',
+        textTertiary: '#19A4CF',
         primary: '#454545',
         secondary: '#1F1F1F',
         tertiary: '#1A1A1A',
         navcolor: '#121212',
+        castRow: '#454545',
+        castRowTwo: '#333333',
       },
       backgroundImage: {
         backdrop: 'url(https://image.tmdb.org/t/p/w500/)',

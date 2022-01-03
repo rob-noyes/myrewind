@@ -31,8 +31,8 @@ function Movie({ movieDetails }) {
 
       <div className='bg-secondary p-4 flex justify-between'>
         <div className='flex flex-col'>
-          <h2 className='text-2xl'>{movieDetails.title}</h2>
-          <span className='text-textSecondary pt-4 text-sm'>
+          <h2 className='text-2xl lg:mt-10 lg:mx-10'>{movieDetails.title}</h2>
+          <span className='text-textSecondary pt-4 text-sm lg:mx-10'>
             {movieDetails.release_date === undefined
               ? ''
               : movieDetails.release_date.slice(0, 4)}
@@ -40,7 +40,7 @@ function Movie({ movieDetails }) {
               ? ''
               : ' • ' + convertTime(movieDetails.runtime)}
           </span>
-          <span className='text-textSecondary py-1 text-sm'>
+          <span className='text-textSecondary py-1 text-sm lg:mx-10'>
             {movieDetails.credits.cast[0].name},{' '}
             {movieDetails.credits.cast[1].name}
           </span>
@@ -52,12 +52,11 @@ function Movie({ movieDetails }) {
         />
       </div>
 
-      <div className='bg-secondary pb-4'>
-        <p className='p-4 text-textSecondary'>{movieDetails.tagline}</p>
-        <p className='px-4 pb-4'>{movieDetails.overview}</p>
+      <div className='bg-secondary py-4 lg:flex lg:flex-col lg:items-center'>
+        <p className='px-4 pb-4 lg:max-w-2xl'>{movieDetails.overview}</p>
       </div>
       <div className='flex flex-col'>
-        <Link to={`/movie/${movieDetails.id}/cast`}>
+        <Link to={`/movie/${movieDetails.id}/cast`} className='w-36'>
           <h3 className='text-xl m-4 flex items-center'>
             Top Cast <MdKeyboardArrowRight className='text-3xl' />
           </h3>
@@ -92,6 +91,46 @@ function Movie({ movieDetails }) {
             </div>
           </li>
         </ul>
+        <div className='bg-secondary'>
+          <Link to={`/movie/${movieDetails.id}/cast`} className='w-40 '>
+            <h3 className='text-xl m-4 flex items-center'>
+              Top Crew <MdKeyboardArrowRight className='text-3xl' />
+            </h3>
+          </Link>
+          <ul className='flex no-wrap overflow-scroll overflow-y-hidden h-48'>
+            {movieDetails.credits.crew.slice(0, 12).map((credit) => (
+              <li className='w-28' key={credit.name}>
+                <div className='h-20 w-20 object-contain mx-4'>
+                  <img
+                    className='rounded-half object-cover h-20 w-20'
+                    src={
+                      credit.profile_path === null
+                        ? '/images/blankProfile.png'
+                        : `https://image.tmdb.org/t/p/w300/${credit.profile_path}`
+                    }
+                    alt=''
+                  />
+                  <p className='text-sm text-center font-semibold'>
+                    {credit.name}
+                  </p>
+                  <p className='text-xs line-clamp-2 text-center text-textSecondary'>
+                    {credit.character}
+                  </p>
+                </div>
+              </li>
+            ))}
+            <li className='w-28'>
+              <div className='h-20 w-20 object-contain mx-4'>
+                <Link
+                  className='h-20 w-20'
+                  to={`/movie/${movieDetails.id}/cast`}
+                >
+                  <h4 className='text-center text-3xl font-light'>See All</h4>
+                </Link>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
