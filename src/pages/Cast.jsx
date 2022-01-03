@@ -23,7 +23,30 @@ function Cast({ movieDetails }) {
       <h3 className=' mb-4 text-primary'>
         Cast <span className='text-textSecondary'>(In Credits Order)</span>
       </h3>
-      {movieDetails.credits.cast.map(
+      <table className='h-14 table-auto max-w-6xl'>
+        {movieDetails.credits.cast.map((credit) => (
+          <tr className=' bg-textSecondary border-b-2'>
+            <td>
+              <img
+                className='object-cover w-8 h-12'
+                src={
+                  credit.profile_path === null
+                    ? '/images/blankProfile.png'
+                    : `https://image.tmdb.org/t/p/w300/${credit.profile_path}`
+                }
+                alt=''
+              />
+            </td>
+            <td>
+              <p className='text-secondary ml-2'>{credit.name}</p>
+            </td>
+            <td>
+              <p className='text-primary'>{credit.character}</p>
+            </td>
+          </tr>
+        ))}
+      </table>
+      {/* {movieDetails.credits.cast.map(
         (credit) => (
           console.log(credit),
           (
@@ -55,7 +78,7 @@ function Cast({ movieDetails }) {
             </li>
           )
         )
-      )}
+      )} */}
     </div>
   );
 }
