@@ -10,7 +10,35 @@ function Cast({ movieDetails }) {
     (crew) => crew.department === 'Writing'
   );
 
-  console.log(directingCredit);
+  const producingCredit = movieDetails.credits.crew.filter(
+    (crew) => crew.department === 'Production'
+  );
+
+  const soundCredit = movieDetails.credits.crew.filter(
+    (crew) => crew.department === 'Sound'
+  );
+
+  const artCredit = movieDetails.credits.crew.filter(
+    (crew) => crew.department === 'Art'
+  );
+
+  const directorOfPhotography = movieDetails.credits.crew.filter(
+    (crew) => crew.department === 'Camera'
+  );
+
+  const visualCredit = movieDetails.credits.crew.filter(
+    (crew) => crew.department === 'Visual Effects'
+  );
+
+  const costumeCredit = movieDetails.credits.crew.filter(
+    (crew) => crew.department === 'Costume & Make-Up'
+  );
+
+  const editingCredit = movieDetails.credits.crew.filter(
+    (crew) => crew.department === 'Editing'
+  );
+
+  console.log(movieDetails.credits.crew);
 
   return (
     <div className='flex flex-wrap flex-col h-full w-full lg:max-w-6xl lg:flex lg:flex-col lg:m-auto p-4 bg-black '>
@@ -72,39 +100,41 @@ function Cast({ movieDetails }) {
           </tbody>
         ))}
       </table>
-      {/* {movieDetails.credits.cast.map(
-        (credit) => (
-          console.log(credit),
-          (
-            <li
-              className='list-none border-b text-blue-600 bg-textSecondary h-14 object-contain flex flex-row justify-between  '
-              key={credit.name}
-            >
-              <div className='flex flex-row w-full justify-between items-center md:justify-start   '>
-                <div className='flex items-center'>
-                  <img
-                    className='object-cover w-8 h-12 '
-                    src={
-                      credit.profile_path === null
-                        ? '/images/blankProfile.png'
-                        : `https://image.tmdb.org/t/p/w300/${credit.profile_path}`
-                    }
-                    alt=''
-                  />
-                  <Link to={`/name/${credit.id}`}>
-                    <h2 className='pl-3 text-sm font-semibold md:w-96'>
-                      {credit.name}
-                    </h2>
-                  </Link>
-                </div>
-                <p className='text-xs text-left text-primary mr-1 line-clamp-1 lg:line-clamp-none'>
-                  {credit.character}
-                </p>
-              </div>
-            </li>
-          )
-        )
-      )} */}
+
+      <h3 className=' mt-4 mb-2 block text-white'>Produced by</h3>
+      {producingCredit.map((credit) => (
+        <p className='mx-2 text-textTertiary'>{credit.name}</p>
+      ))}
+
+      <h3 className=' mt-4 mb-2 block text-white'>Sound by</h3>
+      {soundCredit.map((credit) => (
+        <p className='mx-2 text-textTertiary'>{credit.name}</p>
+      ))}
+
+      <h3 className=' mt-4 mb-2 block text-white'>Cinematography by</h3>
+      {directorOfPhotography.map((credit) => (
+        <p className='mx-2 text-textTertiary'>{credit.name}</p>
+      ))}
+
+      <h3 className=' mt-4 mb-2 block text-white'>Film Editing by</h3>
+      {editingCredit.map((credit) => (
+        <p className='mx-2 text-textTertiary'>{credit.name}</p>
+      ))}
+
+      <h3 className=' mt-4 mb-2 block text-white'>Visual Effects by</h3>
+      {visualCredit.map((credit) => (
+        <p className='mx-2 text-textTertiary'>{credit.name}</p>
+      ))}
+
+      <h3 className=' mt-4 mb-2 block text-white'>Art Direction by</h3>
+      {artCredit.map((credit) => (
+        <p className='mx-2 text-textTertiary'>{credit.name}</p>
+      ))}
+
+      <h3 className=' mt-4 mb-2 block text-white'>Costume by</h3>
+      {costumeCredit.map((credit) => (
+        <p className='mx-2 text-textTertiary'>{credit.name}</p>
+      ))}
     </div>
   );
 }
