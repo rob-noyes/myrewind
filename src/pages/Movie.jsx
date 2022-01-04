@@ -20,14 +20,13 @@ function Movie({ movieDetails }) {
   );
 
   const writing = movieDetails.credits.crew.filter(
-    (credit, index) => credit.department === 'Writing'
+    (credit) => credit.department === 'Writing'
   );
+  console.log(writing);
 
-  const writingCredit = writing.filter((credit, index) => {
-    return writing.indexOf(credit) === index;
-  });
-
-  console.log(directorCredit);
+  const writingCredit = writing.filter(
+    (tag, index, array) => array.findIndex((t) => t.name === tag.name) === index
+  );
 
   return (
     <div className='h-full w-full lg:max-w-6xl lg:flex lg:flex-col lg:m-auto '>
@@ -118,7 +117,7 @@ function Movie({ movieDetails }) {
         </div>
         <div className='px-4 py-2 lg:px-10 flex items-center border-b'>
           <h2 className='text-lg'>Writers</h2>
-          <p className='ml-4 text-textTertiary'>
+          <p className='ml-6 text-textTertiary'>
             {writingCredit.map((credit) => (
               <p>{credit.name}</p>
             ))}
