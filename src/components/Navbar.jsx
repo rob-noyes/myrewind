@@ -29,11 +29,11 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
   };
 
   return (
-    <div className='w-full flex flex-col '>
+    <div className='w-full flex flex-col'>
       <nav
         className={
           toggleSearch
-            ? 'bg-secondary items-center h-14 z-10 shadow-bg'
+            ? 'bg-navcolor items-center h-14 z-10 shadow-bg'
             : 'flex justify-between items-center h-14 bg-navcolor shadow-lg '
         }
       >
@@ -106,12 +106,10 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
               </ul>
             </div>
           </div>
-          <div className='flex justify-between  xl:justify-center'>
+          <div className='flex justify-center bg-navcolor'>
             <div
               className={
-                toggleSearch
-                  ? 'hidden'
-                  : 'flex items-center md:w-10/12 lg:w-7/12'
+                toggleSearch ? 'hidden' : 'flex items-center max-w-3xl w-full '
               }
             >
               <button className='p-2 text-2xl text-white' onClick={onClickMenu}>
@@ -126,13 +124,15 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
               placeholder='Search'
               className={
                 toggleSearch
-                  ? 'transition ease-in-out duration-300 transform translate-y-0 text-lg h-14 w-full p-3 outline-none bg-secondary flex justify-center items-center xl:w-7/12'
-                  : '-translate-y-10 w-0 h-0 bg-secondary'
+                  ? 'transition ease-in-out duration-300 transform translate-y-0 text-lg h-14 w-full p-3 outline-none bg-tertiary flex justify-center items-center  max-w-3xl'
+                  : '-translate-y-10 w-0 h-0 bg-tertiary'
               }
               onChange={onChangeSearch}
             />
             <button
-              className={toggleSearch ? 'text-2xl p-2 text-white' : 'hidden'}
+              className={
+                toggleSearch ? 'text-2xl p-2 text-white bg-tertiary' : 'hidden'
+              }
               onClick={onClickSearch}
             >
               <MdClose />

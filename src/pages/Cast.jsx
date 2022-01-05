@@ -50,7 +50,7 @@ function Cast({ movieDetails }) {
             alt=''
           />
           <div className='ml-4'>
-            <Link to={`/movie/:id`}>
+            <Link to={`/movie/${movieDetails.id}`}>
               <h2 className='text-2xl text-textPrimary'>
                 {movieDetails.title}
               </h2>

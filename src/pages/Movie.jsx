@@ -60,16 +60,18 @@ function Movie({ movieDetails }) {
           <p className='text-sm italic text-textSecondary py-6 lg:mx-10'>
             {movieDetails.tagline}
           </p>
-
-          <div className='lg:flex lg:flex-col lg:items-center'>
-            <p className='lg:mx-10 py-4 lg:max-w-lg'>{movieDetails.overview}</p>
+          <div className='hidden bg-secondary md:flex lg:flex lg:flex-col lg:items-center'>
+            <p className='lg:mx-10 py-4 max-w-lg'>{movieDetails.overview}</p>
           </div>
         </div>
         <img
-          className='w-2/6 h-4/6 xl:w-3/12'
+          className='w-2/6 h-4/6 '
           src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
           alt=''
         />
+      </div>
+      <div className='md:hidden lg:hidden px-4 bg-secondary lg:flex lg:flex-col lg:items-center'>
+        <p className='lg:mx-10 py-4 max-w-lg'>{movieDetails.overview}</p>
       </div>
 
       {/* <div className='bg-secondary py-4 lg:flex lg:flex-col lg:items-center'>
@@ -117,11 +119,13 @@ function Movie({ movieDetails }) {
         </div>
         <div className='px-4 py-2 lg:px-10 flex items-center border-b'>
           <h2 className='text-lg'>Writers</h2>
-          <p className='ml-6 text-textTertiary'>
+          <div>
             {writingCredit.map((credit) => (
-              <p>{credit.name}</p>
+              <p className='ml-6 text-textTertiary' key={credit.id}>
+                {credit.name}
+              </p>
             ))}
-          </p>
+          </div>
         </div>
       </div>
     </div>

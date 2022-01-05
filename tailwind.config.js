@@ -28,8 +28,11 @@ module.exports = {
       width: {
         searchResult: '1000px',
       },
+      maxWidth: {
+        3.5: '50.5rem',
+      },
       margin: {
-        search: '20%',
+        search: '26%',
       },
       boxShadow: {
         bg: '0 0 0 9999px rgba(0, 0 ,0 , 0.8)',

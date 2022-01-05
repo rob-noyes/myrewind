@@ -13,7 +13,7 @@ function Homepage({ trending, setMovieId, movieId, topRated, upcoming }) {
         <h1 className='mx-4 mt-2 text-textPrimary text-3xl font-semibold'>
           Popular Movies
         </h1>
-        <div className='py-4 px-2 flex h-112 overflow-x-auto '>
+        <div className='py-4 px-2 flex h-112 overflow-x-auto overflow-y-hidden '>
           {trending.map((movie) => (
             <div
               onClick={() => onClickRedirect(movie)}

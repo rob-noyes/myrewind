@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US&append_to_response=videos,credits`
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US&append_to_response=videos,credits,recommendations`
       );
       const data = await response.json();
       setMovieDetails(data);
