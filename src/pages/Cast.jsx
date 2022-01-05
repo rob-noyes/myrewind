@@ -41,7 +41,7 @@ function Cast({ movieDetails }) {
   console.log(movieDetails.credits.crew);
 
   return (
-    <div className='flex flex-wrap flex-col h-full w-full lg:max-w-6xl lg:flex lg:flex-col lg:m-auto p-4 bg-black '>
+    <div className='flex flex-wrap flex-col h-full w-full lg:max-w-6xl lg:flex lg:flex-col lg:m-auto p-4 bg-secondary '>
       <div className='flex flex-col mb-4 text-white'>
         <div className='flex flex-row'>
           <img
@@ -50,7 +50,7 @@ function Cast({ movieDetails }) {
             alt=''
           />
           <div className='ml-4'>
-            <Link to={`/movie/:id`}>
+            <Link to={`/movie/${movieDetails.id}`}>
               <h2 className='text-2xl text-textPrimary'>
                 {movieDetails.title}
               </h2>

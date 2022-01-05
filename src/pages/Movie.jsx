@@ -1,8 +1,9 @@
 import React from 'react';
-import { MdKeyboardArrowRight } from 'react-icons/md';
+import { MdKeyboardArrowRight, MdArrowForward, MdStar } from 'react-icons/md';
+
 import { Link } from 'react-router-dom';
 
-function Movie({ movieDetails }) {
+function Movie({ movieDetails, setMovieId }) {
   const convertTime = (time) => {
     let num = time;
     let hours = num / 60;
@@ -22,14 +23,17 @@ function Movie({ movieDetails }) {
   const writing = movieDetails.credits.crew.filter(
     (credit) => credit.department === 'Writing'
   );
-  console.log(writing);
 
   const writingCredit = writing.filter(
     (tag, index, array) => array.findIndex((t) => t.name === tag.name) === index
   );
 
+  const onClickRedirect = (movie) => {
+    setMovieId(movie.id);
+  };
+
   return (
-    <div className='h-full w-full lg:max-w-6xl lg:flex lg:flex-col lg:m-auto '>
+    <div className='h-full w-full lg:max-w-6xl lg:flex lg:flex-col lg:m-auto pb-6'>
       <div className='w-full'>
         <div
           className='h-48 md:h-72 lg:h-96 xl:h-120'
@@ -60,22 +64,24 @@ function Movie({ movieDetails }) {
           <p className='text-sm italic text-textSecondary py-6 lg:mx-10'>
             {movieDetails.tagline}
           </p>
-
-          <div className='lg:flex lg:flex-col lg:items-center'>
-            <p className='lg:mx-10 py-4 lg:max-w-lg'>{movieDetails.overview}</p>
+          <div className='hidden bg-secondary md:flex lg:flex lg:flex-col lg:items-center'>
+            <p className='lg:mx-10 py-4 max-w-lg'>{movieDetails.overview}</p>
           </div>
         </div>
         <img
-          className='w-2/6 h-4/6 xl:w-3/12'
+          className='w-2/6 h-4/6 '
           src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
           alt=''
         />
+      </div>
+      <div className='md:hidden px-4 bg-secondary lg:flex-col lg:items-center'>
+        <p className='lg:mx-10 py-4 max-w-lg'>{movieDetails.overview}</p>
       </div>
 
       {/* <div className='bg-secondary py-4 lg:flex lg:flex-col lg:items-center'>
         <p className='px-4 pb-4 lg:max-w-2xl'>{movieDetails.overview}</p>
       </div> */}
-      <div className='flex flex-col'>
+      <div className='flex flex-col bg-tertiary pb-10 lg:ml-2'>
         <Link to={`/movie/${movieDetails.id}/cast`} className='w-48'>
           <h3 className='text-xl m-4 lg:m-10 flex items-center '>
             Top Cast <MdKeyboardArrowRight className='text-3xl' />
@@ -117,12 +123,83 @@ function Movie({ movieDetails }) {
         </div>
         <div className='px-4 py-2 lg:px-10 flex items-center border-b'>
           <h2 className='text-lg'>Writers</h2>
-          <p className='ml-6 text-textTertiary'>
+          <div>
             {writingCredit.map((credit) => (
-              <p>{credit.name}</p>
+              <p className='ml-6 text-textTertiary' key={credit.id}>
+                {credit.name}
+              </p>
             ))}
-          </p>
+          </div>
         </div>
+        <div className='px-4 py-2 lg:px-10 flex justify-between items-center border-b'>
+          <Link
+            to={`/movie/${movieDetails.id}/cast`}
+            className='flex flex-row items-center '
+          >
+            <h2>All Cast and Crew</h2>
+          </Link>
+          <MdArrowForward className='text-xl' />
+        </div>
+      </div>
+
+      <h2 className=' pt-8 px-2 text-3xl text-textPrimary'>Similar Movies</h2>
+      <div className='py-4 flex h-112 overflow-x-auto overflow-y-hidden '>
+        {movieDetails.recommendations.results.map((movie) => (
+          <div
+            onClick={() => onClickRedirect(movie)}
+            className=' mx-2 shadow-xl bg-secondary rounded-md border border-primary'
+            key={movie.id}
+          >
+            <Link to={`/movie/${movie.id}`}>
+              <div className='w-48 h-32 '>
+                <img
+                  className='rounded-t-md h-68'
+                  src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                  alt=''
+                />
+                <div className='p-3  flex flex-col h-full'>
+                  <span className='flex'>
+                    <MdStar fill='#F4C518' className='text-lg -mx-px' />
+                    <span className='text-sm px-2'>
+                      {movie.vote_average.toFixed(2)}
+                    </span>
+                  </span>
+                  <h3 className='font-medium'>{movie.title}</h3>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </div>
+
+      <h2 className=' pt-8 px-2 text-3xl text-textPrimary'>More Like This</h2>
+      <div className='py-4 flex h-112 overflow-x-auto overflow-y-hidden '>
+        {movieDetails.similar.results.map((movie) => (
+          <div
+            onClick={() => onClickRedirect(movie)}
+            className=' mx-2 shadow-xl bg-secondary rounded-md border border-primary'
+            key={movie.id}
+          >
+            <Link to={`/movie/${movie.id}`}>
+              <div className='w-48 h-32 '>
+                <img
+                  className='rounded-t-md h-68'
+                  src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                  alt=''
+                />
+                <div className='p-3 flex flex-col h-full'>
+                  <span className='flex'>
+                    <MdStar fill='#F4C518' className='text-lg -mx-px' />{' '}
+                    <span className='text-sm px-2'>
+                      {movie.vote_average.toFixed(2)}
+                    </span>
+                  </span>
+                  <h3 className='font-medium'>{movie.title}</h3>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );
