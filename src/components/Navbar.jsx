@@ -3,7 +3,6 @@ import {
   MdHome,
   MdClose,
   MdLocalMovies,
-  MdTv,
   MdCollections,
   MdAccountBox,
 } from 'react-icons/md';
@@ -11,15 +10,24 @@ import { FiMenu, FiSearch } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import MovieSearch from './MovieSearch';
 
-function Navbar({ setSearch, movies, movieId, setMovieId }) {
+function Navbar({ setSearch, movies, movieId, setMovieId, setPage }) {
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleMenu, setToggleMenu] = useState(false);
+
+  const resetTopRated = () => {
+    setPage(1);
+  };
 
   const onClickSearch = () => {
     setToggleSearch(!toggleSearch);
   };
 
   const onClickMenu = () => {
+    setToggleMenu(!toggleMenu);
+    resetTopRated();
+  };
+
+  const clickMenuNav = () => {
     setToggleMenu(!toggleMenu);
   };
 
@@ -69,23 +77,16 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
                   className='flex items-center pb-3'
                 >
                   <MdHome className='text-2xl' fill='#1BB6E7' />
+
                   <li className='pl-3'>Home</li>
                 </Link>
                 <Link
-                  to='/'
+                  to='/movies'
                   onClick={onClickMenu}
                   className='flex items-center pb-3'
                 >
                   <MdLocalMovies className='text-2xl' fill='#1BB6E7' />
-                  <li className='pl-3'>Movies</li>
-                </Link>
-                <Link
-                  to='/'
-                  onClick={onClickMenu}
-                  className='flex items-center pb-3'
-                >
-                  <MdTv className=' text-2xl' fill='#1BB6E7' />
-                  <li className='pl-3'>TV Shows</li>
+                  <li className='pl-3'>Top Movies</li>
                 </Link>
                 <Link
                   to='/'
@@ -112,10 +113,13 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
                 toggleSearch ? 'hidden' : 'flex items-center max-w-3xl w-full '
               }
             >
-              <button className='p-2 text-2xl text-white' onClick={onClickMenu}>
+              <button
+                className='p-2 text-2xl text-white'
+                onClick={clickMenuNav}
+              >
                 <FiMenu />
               </button>
-              <Link to='/' className='w-32'>
+              <Link to='/' className='w-32' onClick={resetTopRated}>
                 <img src='../images/logo.png' className='' alt='' />
               </Link>
             </div>
