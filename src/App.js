@@ -7,6 +7,7 @@ import Movie from './pages/Movie';
 import Cast from './pages/Cast';
 import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
+import Movies from './pages/Movies';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -21,7 +22,7 @@ function App() {
   useEffect(() => {
     const fetchSearch = async () => {
       const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US&query=${search}&${page}`
+        `https://api.themoviedb.org/3/search/movie?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US&query=${search}`
       );
       const data = await response.json();
       setMovies(data.results);
@@ -36,7 +37,6 @@ function App() {
       );
       const data = await response.json();
       setMovieDetails(data);
-      console.log(data);
     };
     fetchMovieDetails();
   }, [movieId]);
@@ -52,13 +52,6 @@ function App() {
     };
 
     //Gets Top Rated movies from TMDB
-    const fetchTopRated = async () => {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=8a2b9a4f857805da801ad11b8a954949`
-      );
-      const data = await response.json();
-      setTopRated(data.results);
-    };
 
     //Gets Upcoming movies from TMDB
     const fetchUpcoming = async () => {
@@ -70,9 +63,20 @@ function App() {
     };
 
     fetchTrendingMovies();
-    fetchTopRated();
     fetchUpcoming();
   }, []);
+
+  useEffect(() => {
+    const fetchTopRated = async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=8a2b9a4f857805da801ad11b8a954949&page=${page}`
+      );
+      const data = await response.json();
+      console.log(data);
+      setTopRated(data.results);
+    };
+    fetchTopRated();
+  }, [page]);
 
   return (
     <div className='bg-black lg:bg-tertiary text-white w-full font-sans'>
@@ -83,6 +87,7 @@ function App() {
           movies={movies}
           movieId={movieId}
           setMovieId={setMovieId}
+          setPage={setPage}
         />
         <ScrollToTop />
         <Routes>
@@ -96,6 +101,17 @@ function App() {
                 movieId={movieId}
                 topRated={topRated}
                 upcoming={upcoming}
+              />
+            }
+          />
+          <Route
+            path='/movies'
+            element={
+              <Movies
+                setMovieId={setMovieId}
+                topRated={topRated}
+                setPage={setPage}
+                page={page}
               />
             }
           />
