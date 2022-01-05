@@ -138,7 +138,13 @@ function Navbar({ setSearch, movies, movieId, setMovieId }) {
               <MdClose />
             </button>
             <button
-              className={toggleSearch ? 'hidden' : 'relative text-2xl pr-2'}
+              className={
+                toggleSearch
+                  ? 'hidden'
+                  : 'relative text-2xl pr-2' && toggleMenu
+                  ? 'hidden'
+                  : 'relative text-2xl pr-2'
+              }
               onClick={onClickSearch}
             >
               <FiSearch />

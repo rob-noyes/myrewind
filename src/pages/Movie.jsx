@@ -161,7 +161,7 @@ function Movie({ movieDetails, setMovieId }) {
                   <span className='flex'>
                     <MdStar fill='#F4C518' className='text-lg -mx-px' />
                     <span className='text-sm px-2'>
-                      {movie.vote_average.toFixed(2)}
+                      {movie.vote_average.toFixed(1)}
                     </span>
                   </span>
                   <h3 className='font-medium'>{movie.title}</h3>
@@ -191,7 +191,7 @@ function Movie({ movieDetails, setMovieId }) {
                   <span className='flex'>
                     <MdStar fill='#F4C518' className='text-lg -mx-px' />{' '}
                     <span className='text-sm px-2'>
-                      {movie.vote_average.toFixed(2)}
+                      {movie.vote_average.toFixed(1)}
                     </span>
                   </span>
                   <h3 className='font-medium'>{movie.title}</h3>
