@@ -5,6 +5,8 @@ import Homepage from './pages/Homepage';
 import { useEffect, useState } from 'react';
 import Movie from './pages/Movie';
 import Cast from './pages/Cast';
+import ScrollToTop from './components/ScrollToTop';
+import Footer from './components/Footer';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -30,10 +32,11 @@ function App() {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US&append_to_response=videos,credits,recommendations`
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=8a2b9a4f857805da801ad11b8a954949&language=en-US&append_to_response=videos,credits,recommendations,similar`
       );
       const data = await response.json();
       setMovieDetails(data);
+      console.log(data);
     };
     fetchMovieDetails();
   }, [movieId]);
@@ -81,6 +84,7 @@ function App() {
           movieId={movieId}
           setMovieId={setMovieId}
         />
+        <ScrollToTop />
         <Routes>
           <Route
             path='/'
@@ -97,13 +101,16 @@ function App() {
           />
           <Route
             path='/movie/:id'
-            element={<Movie movieDetails={movieDetails} />}
+            element={
+              <Movie movieDetails={movieDetails} setMovieId={setMovieId} />
+            }
           />
           <Route
             path='/movie/:id/cast'
             element={<Cast movieDetails={movieDetails} />}
           />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
