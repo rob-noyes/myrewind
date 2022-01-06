@@ -1,30 +1,19 @@
-import { MdArrowForwardIos, MdArrowBackIos, MdStar } from 'react-icons/md';
+import { MdStar } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-function Movies({ setMovieId, topRated, setPage, page }) {
+function NowPlaying({ setMovieId, nowPlaying, page }) {
   const pageSize = 20;
-  const changePageForward = () => {
-    if (page > 0) {
-      setPage(page + 1);
-    }
-  };
-
-  const changePageBackward = () => {
-    if (page >= 2) {
-      setPage(page - 1);
-    }
-  };
 
   const onClickRedirect = (movie) => {
     setMovieId(movie.id);
   };
 
   return (
-    <div className='max-w-6xl w-full m-auto bg-secondary'>
-      <h2 className='text-2xl text-textPrimary px-3 py-4'>Top Movies</h2>
+    <div className='max-w-6xl w-full m-auto bg-secondary pb-10'>
+      <h2 className='text-2xl text-textPrimary px-3 py-4'>Now Playing</h2>
       <table className='w-full '>
         <tbody className='flex flex-col px-3'>
-          {topRated.map((movie, index) => (
+          {nowPlaying.map((movie, index) => (
             <tr
               key={movie.id}
               className={
@@ -62,21 +51,8 @@ function Movies({ setMovieId, topRated, setPage, page }) {
           ))}
         </tbody>
       </table>
-      <div className='flex justify-center items-center'>
-        <button
-          className={page > 1 ? 'p-2 pr-0' : 'text-primary'}
-          onClick={changePageBackward}
-          disabled={page > 1 ? false : true}
-        >
-          <MdArrowBackIos className='text-2xl' />
-        </button>
-        <span>{page}</span>
-        <button className='p-2' onClick={changePageForward}>
-          <MdArrowForwardIos className='text-2xl' />
-        </button>
-      </div>
     </div>
   );
 }
 
-export default Movies;
+export default NowPlaying;

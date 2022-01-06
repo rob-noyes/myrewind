@@ -4,7 +4,6 @@ import { MdStar } from 'react-icons/md';
 function Homepage({ trending, setMovieId, movieId, topRated, upcoming }) {
   const onClickRedirect = (movie) => {
     setMovieId(movie.id);
-    console.log(movieId);
   };
 
   return (
@@ -73,11 +72,13 @@ function Homepage({ trending, setMovieId, movieId, topRated, upcoming }) {
         </div>
       </div>
 
-      <div className='bg-tertiary mt-4 pt-2'>
-        <h1 className='mx-4 mt-2 text-textPrimary text-3xl font-semibold'>
-          Top Rated
-        </h1>
-        <div className='py-4 px-2 flex h-112 overflow-x-auto '>
+      <div className='bg-tertiary mt-4 pt-2 pb-10'>
+        <Link to={'/movies'}>
+          <h1 className='ml-4 mt-2 text-textPrimary text-3xl font-semibold'>
+            Top Rated
+          </h1>
+        </Link>
+        <div className='py-4 px-2 flex h-112 overflow-x-auto'>
           {topRated.map((movie) => (
             <div
               onClick={() => onClickRedirect(movie)}
