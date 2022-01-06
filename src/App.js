@@ -92,7 +92,6 @@ function App() {
         `https://api.themoviedb.org/3/movie/now_playing?api_key=8a2b9a4f857805da801ad11b8a954949&page=${page}`
       );
       const data = await response.json();
-      console.log(data.results);
       setNowPlaying(data.results);
     };
     fetchNowPlaying();
@@ -141,7 +140,6 @@ function App() {
               <NowPlaying
                 setMovieId={setMovieId}
                 nowPlaying={nowPlaying}
-                setPage={setPage}
                 page={page}
               />
             }

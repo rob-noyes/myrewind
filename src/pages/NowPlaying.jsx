@@ -1,19 +1,8 @@
-import { MdArrowForwardIos, MdArrowBackIos, MdStar } from 'react-icons/md';
+import { MdStar } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-function NowPlaying({ setMovieId, nowPlaying, setPage, page }) {
+function NowPlaying({ setMovieId, nowPlaying, page }) {
   const pageSize = 20;
-  const changePageForward = () => {
-    if (page > 0) {
-      setPage(page + 1);
-    }
-  };
-
-  const changePageBackward = () => {
-    if (page >= 2) {
-      setPage(page - 1);
-    }
-  };
 
   const onClickRedirect = (movie) => {
     setMovieId(movie.id);

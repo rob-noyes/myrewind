@@ -4,7 +4,6 @@ import { MdStar } from 'react-icons/md';
 function Homepage({ trending, setMovieId, movieId, topRated, upcoming }) {
   const onClickRedirect = (movie) => {
     setMovieId(movie.id);
-    console.log(movieId);
   };
 
   return (
