@@ -27,7 +27,7 @@ function MovieSearch({
     <div
       className={
         toggleSearch
-          ? 'm-auto  w-full max-w-3.5 xl:h-search overflow-y-scroll bg-secondary'
+          ? 'm-auto  w-full max-w-3.5 md:h-search overflow-y-scroll bg-secondary'
           : 'hidden'
       }
     >
@@ -47,7 +47,7 @@ function MovieSearch({
               <img
                 src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
                 alt=''
-                className='max-w-xs'
+                className='md:max-w-xs w-24 h-36'
               />
               <div className='flex flex-col p-4'>
                 <h2 className='text-lg'>{movie.title}</h2>

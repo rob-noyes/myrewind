@@ -89,15 +89,15 @@ function Navbar({ setSearch, movies, movieId, setMovieId, setPage }) {
                   <li className='pl-3'>Top Movies</li>
                 </Link>
                 <Link
-                  to='/'
+                  to='/now_playing'
                   onClick={onClickMenu}
                   className='flex items-center pb-3'
                 >
                   <MdCollections className=' text-2xl' fill='#1BB6E7' />
-                  <li className='pl-3'>Collections</li>
+                  <li className='pl-3'>Now Playing</li>
                 </Link>
                 <Link
-                  to='/'
+                  to='/account'
                   onClick={onClickMenu}
                   className='flex items-center pb-3'
                 >
