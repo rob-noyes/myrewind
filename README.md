@@ -4,7 +4,7 @@ MyRewind is a take on a movie database site, to allow users to check out movies 
 
 ## Features
 
-- Browser Top Rated, Upcoming, and Popular movies on the home page.
+- Browse Top Rated, Upcoming, and Popular movies on the home page.
 - Each movie has its own dedicated page with details and credits, just click on the title or image.
 - Search any movie within the database to see a more in depth look with search icon.
 - Check out lists of Top Rated and Now playing Movies on unique pages using hamburger menu.
