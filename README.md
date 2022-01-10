@@ -2,6 +2,8 @@
 
 MyRewind is a take on a movie database site, to allow users to check out movies and their details.
 
+![myrewind netlify app_](https://user-images.githubusercontent.com/59042528/148812746-13f8aa17-0ecf-4f04-92b3-5e3733916eec.png)
+
 ## Features
 
 - Browse Top Rated, Upcoming, and Popular movies on the home page.
